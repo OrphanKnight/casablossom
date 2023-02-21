@@ -6,7 +6,6 @@ async function connectDb() {
     console.log("Already connected to the database.");
     return;
   }
-
   if (mongoose.connections.length > 0) {
     connection.isConnected = mongoose.connections[0].readyState;
     if (connection.isConnected === 1) {
@@ -15,7 +14,7 @@ async function connectDb() {
     }
     await mongoose.disconnect();
   }
-  const db = await mongoose.connect(process.env.MONGODB_URL, {
+  const db = await mongoose.connect(process.env.REACT_APP_MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
