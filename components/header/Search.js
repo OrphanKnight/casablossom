@@ -32,14 +32,18 @@ export default function Search({ searchHandler }) {
             <RiSearch2Line />
           </button>
         </form>
-        <ul>
+        {/* <ul>
           <Link href="/cart" legacyBehavior>
             <a className={styles.cart} id="link">
-              <img src="https://cdn-icons-png.flaticon.com/512/4148/4148063.png" width="50" height="50"></img>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4148/4148063.png"
+                width="50"
+                height="50"
+              ></img>
               <span>0</span>
             </a>
           </Link>
-          </ul>
+        </ul> */}
       </div>
     </div>
   );

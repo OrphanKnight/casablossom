@@ -1,0 +1,84 @@
+<header className={Styles.header} id="header">
+  <nav className={Styles.navbar-items navbar-container}>
+    {/* Logo  */}
+    <a href="./index.html" className={Styles.brand}>
+      <img src="./logo.png" alt="Logo" />
+    </a>
+    {/* Toggler  */}
+    <div className={Styles.burger} id="burger">
+      <span className={Styles.burger-line} />
+      <span className={Styles.burger-line} />
+      <span className={Styles.burger-line} />
+    </div>
+    {/* Search BAr  */}
+    <div>
+      <div className={Styles.search-block}>
+        <form className={Styles.search-form}>
+          <input
+            type="search"
+            name="search"
+            className={Styles.search-input}
+            placeholder="Search here..."
+          />
+        </form>
+      </div>
+    </div>
+    {/* Menu Item  */}
+    <div className={Styles.menu-container}>
+      <span className={Styles.overlay} />
+      <div className={Styles.menu" id="menu}>
+        <ul className={Styles.menu-inner}>
+          <li className={Styles.menu-item}>
+            <a className={Styles.menu-link} href="#">
+              Home
+            </a>
+          </li>
+          <li className={Styles.menu-item}>
+            <a className={Styles.menu-link} href="#">
+              About
+            </a>
+          </li>
+          <li className={Styles.menu-item}>
+            <a className={Styles.menu-link} href="#">
+              Contact Us
+            </a>
+          </li>
+          <li className={Styles.menu-item}>
+            <a className={Styles.menu-link} href="#">
+              <span>
+                <i className={Styles.fa-solid Styles.fa-cart-shopping} />
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div className={Styles.dropdown-container}>
+      <div className={Styles.profile-photo}>
+        <img
+          onclick="myFunction()"
+          className={Styles.dropBtn}
+          src="./profile.jpg"
+          alt="Profile Photo"
+        />
+      </div>
+      <div id="myDropdown" className={Styles.dropdown-content}>
+        <div className={Styles.user-photo}>
+          <img src="./profile.jpg" alt="User" />
+          <div className={Styles.user-details}>
+            <p className={Styles.username}>username</p>
+            <p className={Styles.email}>info@gmail.com</p>
+            <a className={Styles.signOut} href="#">
+              Sign Out
+            </a>
+          </div>
+        </div>
+        <div className={Styles.user-link}>
+          <a href="#">Profile</a>
+          <a href="#">Order</a>
+          <a href="#">Billing</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,62 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  grid-template-areas:
+    "user header header"
+    "user  menu menu"
+    "user  menu menu";
+}
+.main_two {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  grid-template-areas:
+    " header header user"
+    "menu  menu user"
+    "menu  menu user";
+}
+
+.menu {
+  grid-area: menu;
+  height: 560px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: $shadow-1;
+}
+
+.header {
+  grid-area: header;
+  height: 50;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 2em;
+  letter-spacing: -2px;
+  border-bottom: 2px solid black;
+  text-transform: uppercase;
+}
+
+.swiper {
+  grid-area: swiper;
+  height: 300px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: $shadow-1;
+}
+
+.user {
+  grid-area: user;
+  display: block;
+  height: 510px;
+  max-width: 100%;
+  object-fit: cover;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: $shadow-1;
+}
+.offers {
+  grid-area: offers;
+  height: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: $shadow-1;
+}
