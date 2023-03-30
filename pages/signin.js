@@ -1,4 +1,4 @@
-import { UseState } from "react";
+import { useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import styles from "../styles/signin.module.scss";
@@ -30,8 +30,8 @@ const initialvalues = {
 };
 
 export default function signin({ providers, callbackUrl, csrfToken }) {
-  const [loading, setLoading] = UseState(false);
-  const [user, setUser] = UseState(initialvalues);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(initialvalues);
   const {
     login_email,
     login_password,

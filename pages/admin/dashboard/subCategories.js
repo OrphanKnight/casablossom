@@ -2,11 +2,11 @@ import Layout from "../../../components/admin/layout";
 import db from "../../../utils/db";
 import Category from "../../../models/Category";
 import SubCategory from "../../../models/SubCategory";
-import { UseState } from "react";
+import { useState } from "react";
 import Create from "../../../components/admin/subCategories/Create";
 import List from "../../../components/admin/subCategories/List";
 export default function subCategories({ categories, subCategories }) {
-  const [data, setData] = UseState(subCategories);
+  const [data, setData] = useState(subCategories);
   console.log(data);
   return (
     <Layout>

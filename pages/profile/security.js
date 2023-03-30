@@ -3,17 +3,17 @@ import Head from "next/head";
 import Layout from "../../components/profile/layout";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { UseState } from "react";
+import { useState } from "react";
 import CircledIconBtn from "../../components/buttons/circledIconBtn";
 import LoginInput from "../../components/inputs/loginInput";
 import styles from "../../styles/profile.module.scss";
 import axios from "axios";
 export default function security({ user, tab }) {
-  const [current_password, setCurrent_password] = UseState("");
-  const [password, setPassword] = UseState("");
-  const [conf_password, setConf_password] = UseState("");
-  const [success, setSuccess] = UseState("");
-  const [error, setError] = UseState("");
+  const [current_password, setCurrent_password] = useState("");
+  const [password, setPassword] = useState("");
+  const [conf_password, setConf_password] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const validate = Yup.object({
     current_password: Yup.string()
       .required(

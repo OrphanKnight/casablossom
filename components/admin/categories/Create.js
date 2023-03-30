@@ -1,12 +1,12 @@
 import { Form, Formik } from "formik";
-import { UseState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import * as Yup from "yup";
 import AdminInput from "../../inputs/adminInput";
 import { toast } from "react-toastify";
 import axios from "axios";
 export default function Create({ setCategories }) {
-  const [name, setName] = UseState("");
+  const [name, setName] = useState("");
   const validate = Yup.object({
     name: Yup.string()
       .required("Category name is required.")

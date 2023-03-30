@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { UseEffect } from "react";
-import { UseState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import ProductSwiper from "./ProductSwiper";
 import styles from "./styles.module.scss";
 export default function ProductCard({ product }) {
-  const [active, setActive] = UseState(0);
-  const [images, setImages] = UseState(product.subProducts[active]?.images);
-  const [prices, setPrices] = UseState(
+  const [active, setActive] = useState(0);
+  const [images, setImages] = useState(product.subProducts[active]?.images);
+  const [prices, setPrices] = useState(
     product.subProducts[active]?.sizes
       .map((s) => {
         return s.price;
@@ -16,13 +16,13 @@ export default function ProductCard({ product }) {
       })
   );
 
-  const [styless, setStyless] = UseState(
+  const [styless, setStyless] = useState(
     product.subProducts.map((p) => {
       return p.color;
     })
   );
 
-  UseEffect(() => {
+  useEffect(() => {
     //UPDATES INFORMATION WHEN INDEX CHANGES
     setImages(product.subProducts[active].images);
     setPrices(

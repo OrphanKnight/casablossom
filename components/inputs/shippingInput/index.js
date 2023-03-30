@@ -1,11 +1,11 @@
 import styles from "./styles.module.scss";
 import { useField, ErrorMessage } from "formik";
-import { UseEffect, UseState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 export default function ShippingInput({ placeholder, ...props }) {
   const inputRef = useRef(null);
   const [field, meta] = useField(props);
-  const [move, setMove] = UseState(false);
-  UseEffect(() => {
+  const [move, setMove] = useState(false);
+  useEffect(() => {
     if (field.value.length > 0) {
       setMove(true);
     } else {

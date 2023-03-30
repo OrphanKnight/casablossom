@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useRef } from "react";
-import { UseState } from "react";
+import { useState } from "react";
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
 export default function ListItem({ category, setCategories }) {
-  const [open, setOpen] = UseState(false);
-  const [name, setName] = UseState("");
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
   const input = useRef(null);
   const handleRemove = async (id) => {
     try {

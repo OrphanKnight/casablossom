@@ -4,12 +4,12 @@ import Product from "@/models/Product";
 import Header from "@/components/header";
 import Category from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
-import { UseState } from "react";
+import { useState } from "react";
 import ProductCards from "@/components/ProductPage/productCards";
 import Infos from "@/components/ProductPage/infos";
 
 export default function product({ product }) {
-  const [activeImg, setActiveImg] = UseState("");
+  const [activeImg, setActiveImg] = useState("");
   return (
     <>
       <Header />

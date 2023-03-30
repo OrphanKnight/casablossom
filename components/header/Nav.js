@@ -7,14 +7,14 @@ import {
   RiArrowDropDownFill,
   RiSpyFill,
 } from "react-icons/ri";
-import { UseState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
 import { useSession } from "next-auth/react";
 // https://www.youtube.com/watch?v=PwWHL3RyQgk&ab_channel=Skillthrive
 export default function Navbar() {
   const { data: session } = useSession();
-  const [visible, setVisable] = UseState(false);
+  const [visible, setVisable] = useState(false);
   return (
     <div className={styles.nav}>
       <div className={styles.nav__container}>

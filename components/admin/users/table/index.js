@@ -213,12 +213,12 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable({ rows }) {
-  const [order, setOrder] = React.UseState("asc");
-  const [orderBy, setOrderBy] = React.UseState("calories");
-  const [selected, setSelected] = React.UseState([]);
-  const [page, setPage] = React.UseState(0);
-  const [dense, setDense] = React.UseState(false);
-  const [rowsPerPage, setRowsPerPage] = React.UseState(10);
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("calories");
+  const [selected, setSelected] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [dense, setDense] = React.useState(false);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";

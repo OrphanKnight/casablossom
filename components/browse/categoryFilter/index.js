@@ -1,4 +1,4 @@
-import { UseState } from "react";
+import { useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 import styles from "../styles.module.scss";
@@ -10,7 +10,7 @@ export default function CategoryFilter({
   categoryHandler,
   replaceQuery,
 }) {
-  const [show, setShow] = UseState(true);
+  const [show, setShow] = useState(true);
   return (
     <div className={styles.filter}>
       <h3>

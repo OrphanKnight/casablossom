@@ -2,11 +2,11 @@ import Link from "next/link";
 import styles from "./styles.module.scss";
 import { RiSearch2Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
-import { UseState } from "react";
-import { UseRouter } from "next/router";
+import { useState } from "react";
+import { useRouter } from "next/router";
 export default function Search({ searchHandler }) {
-  const router = UseRouter();
-  const [query, setQuery] = UseState(router.query.search || "");
+  const router = useRouter();
+  const [query, setQuery] = useState(router.query.search || "");
   const { cart } = useSelector((state) => ({ ...state }));
   const handleSearch = (e) => {
     e.preventDefault();

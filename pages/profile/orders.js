@@ -1,7 +1,7 @@
 import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { UseRouter } from "next/router";
+import { useRouter } from "next/router";
 import Layout from "../../components/profile/layout";
 import { ordersLinks } from "../../data/profile";
 import Order from "../../models/Order";
@@ -9,7 +9,7 @@ import styles from "../../styles/profile.module.scss";
 import { FiExternalLink } from "react-icons/fi";
 import slugify from "slugify";
 export default function orders({ user, tab, orders }) {
-  const router = UseRouter();
+  const router = useRouter();
   return (
     <Layout session={user.user} tab={tab}>
       <Head>

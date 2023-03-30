@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { UseState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 export default function NewsLetter() {
   return (

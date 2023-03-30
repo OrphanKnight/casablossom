@@ -1,5 +1,5 @@
 import { ErrorMessage, useField } from "formik";
-import { UseState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import { ColorExtractor } from "react-color-extractor";
 import { TbArrowUpRightCircle } from "react-icons/tb";
@@ -10,8 +10,8 @@ export default function Colors({
   colorImage,
   ...props
 }) {
-  const [toggle, setToggle] = UseState(false);
-  const [colors, setColors] = UseState([]);
+  const [toggle, setToggle] = useState(false);
+  const [colors, setColors] = useState([]);
   const [field, meta] = useField(props);
   const renderSwatches = () => {
     return colors.map((color, id) => (

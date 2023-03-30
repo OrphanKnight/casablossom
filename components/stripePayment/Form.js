@@ -1,9 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { UseState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 export default function Form({ total, order_id }) {
-  const [errorMessage, setErrorMessage] = UseState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
 

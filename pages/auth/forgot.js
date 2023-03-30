@@ -4,7 +4,7 @@ import Footer from "../../components/footer";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import CircledIconBtn from "../../components/buttons/circledIconBtn";
 import LoginInput from "../../components/inputs/loginInput";
-import { UseState } from "react";
+import { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -12,10 +12,10 @@ import DotLoaderSpinner from "../../components/loaders/dotLoader";
 import axios from "axios";
 import { getSession } from "next-auth/react";
 export default function forgot() {
-  const [email, setEmail] = UseState("");
-  const [error, setError] = UseState("");
-  const [success, setSuccess] = UseState("");
-  const [loading, setLoading] = UseState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState("");
   const emailValidation = Yup.object({
     email: Yup.string()
       .required(

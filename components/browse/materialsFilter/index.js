@@ -1,5 +1,5 @@
-import { UseRouter } from "next/router";
-import { UseState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 import styles from "../styles.module.scss";
@@ -9,8 +9,8 @@ export default function MaterialsFilter({
   materialHandler,
   replaceQuery,
 }) {
-  const router = UseRouter();
-  const [show, setShow] = UseState(true);
+  const router = useRouter();
+  const [show, setShow] = useState(true);
   return (
     <div className={styles.filter}>
       <h3>

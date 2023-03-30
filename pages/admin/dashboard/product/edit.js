@@ -3,7 +3,7 @@ import Layout from "../../../../components/admin/layout";
 import db from "../../../../utils/db";
 import Product from "../../../../models/Product";
 import Category from "../../../../models/Category";
-import { UseEffect, UseState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import * as Yup from "yup";
@@ -60,15 +60,15 @@ const initialState = {
   shippingFee: "",
 };
 export default function create({ parents, categories }) {
-  const [product, setProduct] = UseState(initialState);
-  const [subs, setSubs] = UseState([]);
-  const [colorImage, setColorImage] = UseState("");
-  const [images, setImages] = UseState([]);
-  const [description_images, setDescription_images] = UseState("");
-  const [loading, setLoading] = UseState(false);
+  const [product, setProduct] = useState(initialState);
+  const [subs, setSubs] = useState([]);
+  const [colorImage, setColorImage] = useState("");
+  const [images, setImages] = useState([]);
+  const [description_images, setDescription_images] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = UseDispatch();
 
-  UseEffect(() => {
+  useEffect(() => {
     const getParentData = async () => {
       if (product.parent) {
         const { data } = await axios.get(`/api/product/${product.parent}`);
@@ -89,7 +89,7 @@ export default function create({ parents, categories }) {
     };
     getParentData();
   }, [product.parent]);
-  UseEffect(() => {
+  useEffect(() => {
     async function getSubs() {
       const { data } = await axios.get("/api/admin/subCategory", {
         params: {

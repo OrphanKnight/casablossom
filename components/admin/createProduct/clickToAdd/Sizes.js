@@ -1,10 +1,10 @@
-import { UseState } from "react";
+import { useState } from "react";
 import { BsFillPatchMinusFill, BsFillPatchPlusFill } from "react-icons/bs";
 import { sizesList } from "../../../../data/sizes";
 import styles from "./styles.module.scss";
 
 export default function Sizes({ sizes, product, setProduct }) {
-  const [noSize, setNoSize] = UseState(false);
+  const [noSize, setNoSize] = useState(false);
   const handleSize = (i, e) => {
     const values = [...sizes];
     values[i][e.target.name] = e.target.value;

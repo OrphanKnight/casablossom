@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { UseState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import * as Yup from "yup";
 import AdminInput from "../../inputs/adminInput";
@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import SingularSelect from "../../selects/SingularSelect";
 export default function Create({ categories, setSubCategories }) {
-  const [name, setName] = UseState("");
-  const [parent, setParent] = UseState("");
+  const [name, setName] = useState("");
+  const [parent, setParent] = useState("");
   const validate = Yup.object({
     name: Yup.string()
       .required("SubCategory name is required.")

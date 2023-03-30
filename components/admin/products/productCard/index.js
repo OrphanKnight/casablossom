@@ -7,9 +7,9 @@ import Link from "next/link";
 import { TbEdit } from "react-icons/tb";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
-import { UseState } from "react";
+import { useState } from "react";
 export default function ProductCard({ product }) {
-  const [active, setActive] = UseState(0);
+  const [active, setActive] = useState(0);
   return (
     <div className={styles.product}>
       <h1 className={styles.product__name}>{product.name}</h1>

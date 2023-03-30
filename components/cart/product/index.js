@@ -4,12 +4,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { UseDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../store/cartSlice";
-import { UseState, UseEffect } from "react";
+import { useState, useEffect } from "react";
 export default function Product({ product, selected, setSelected }) {
   const { cart } = useSelector((state) => ({ ...state }));
-  const [active, setActive] = UseState();
+  const [active, setActive] = useState();
 
-  UseEffect(() => {
+  useEffect(() => {
     const check = selected?.find((p) => p._uid == product._uid);
     setActive(check);
   }, [selected]);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import { useRef } from "react";
-import { UseState } from "react";
+import { useState } from "react";
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
 import SingularSelect from "../../selects/SingularSelect";
@@ -12,9 +12,9 @@ export default function ListItem({
   setSubCategories,
 }) {
   console.log("sub", subCategory);
-  const [open, setOpen] = UseState(false);
-  const [name, setName] = UseState("");
-  const [parent, setParent] = UseState("");
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [parent, setParent] = useState("");
   const input = useRef(null);
   const handleRemove = async (id) => {
     try {

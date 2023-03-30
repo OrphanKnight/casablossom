@@ -5,22 +5,22 @@ import Product from "@/components/cart/product";
 import styles from "@/styles/cart.module.scss";
 import { UseDispatch, useSelector } from "react-redux";
 import Checkout from "@/components/cart/checkout";
-import { UseEffect, UseState } from "react";
-import { Router, UseRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Router, useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import { saveCart } from "@/requests/user";
 
 export default function Home({ country }) {
-  const Router = UseRouter();
+  const Router = useRouter();
   const { data: session } = useSession();
-  const [selected, setSelected] = UseState([]);
+  const [selected, setSelected] = useState([]);
   const { cart } = useSelector((state) => ({ ...state }));
   const dispatch = UseDispatch();
 
-  const [shippingFee, setShippingFee] = UseState(0);
-  const [subtotal, setSubtotal] = UseState(0);
-  const [total, setTotal] = UseState(0);
-  UseEffect(() => {
+  const [shippingFee, setShippingFee] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
     setShippingFee(
       selected.reduce((a, c) => a + Number(c.shipping), 0).toFixed(2)
     );

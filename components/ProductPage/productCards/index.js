@@ -1,9 +1,9 @@
 import styles from "./styles.module.scss";
 import ReactImageMagnify from "react-image-magnify";
-import { UseState } from "react";
+import { useState } from "react";
 
 export default function ProductCards({ images, activeImg }) {
-  const [active, setActive] = UseState(0);
+  const [active, setActive] = useState(0);
   return (
     <div className={styles.swiper}>
       <div className={styles.swiper__active}>

@@ -21,9 +21,9 @@ import {
 //-----------------------
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { UseRouter } from "next/router";
+import { useRouter } from "next/router";
 export default function Sidebar() {
-  const router = UseRouter();
+  const router = useRouter();
   const route = router.pathname.split("/admin/dashboard/")[1];
   const { data: session } = useSession();
   const dispatch = UseDispatch();
