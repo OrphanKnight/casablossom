@@ -20,9 +20,9 @@ import PatternsFilter from "../components/browse/patternsFilter";
 import MaterialsFilter from "../components/browse/materialsFilter";
 import GenderFilter from "../components/browse/genderFilter";
 import HeadingFilters from "../components/browse/headingFilters";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 import { Pagination } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { UseEffect, useRef, UseState } from "react";
 import axios from "axios";
 export default function Browse({
   categories,
@@ -37,7 +37,7 @@ export default function Browse({
   paginationCount,
   country,
 }) {
-  const router = useRouter();
+  const router = UseRouter();
   const filter = ({
     search,
     category,
@@ -178,11 +178,11 @@ export default function Browse({
     };
   }
   //---------------------------------
-  const [scrollY, setScrollY] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [scrollY, setScrollY] = UseState(0);
+  const [height, setHeight] = UseState(0);
   const headerRef = useRef(null);
   const el = useRef(null);
-  useEffect(() => {
+  UseEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };

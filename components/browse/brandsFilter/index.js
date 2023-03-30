@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { UseState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 import styles from "../styles.module.scss";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 
 export default function BrandsFilter({ brands, brandHandler, replaceQuery }) {
-  const router = useRouter();
-  const [show, setShow] = useState(true);
+  const router = UseRouter();
+  const [show, setShow] = UseState(true);
   return (
     <div className={styles.filter}>
       <h3>

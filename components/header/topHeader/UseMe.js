@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect, useRef } from "react";
+import { UseState, UseEffect, useRef } from "react";
 import style from "./styles.module.scss";
 import {
   RiAccountPinCircleLine,
@@ -12,12 +12,12 @@ import UserMenu from "../UserMenu";
 import SearchBar from "../Search";
 export default function UseMe() {
   const ref = useRef();
-  const [isOpenMyDropdown, setIsOpenMyDropdown] = useState(false);
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenMyDropdown, setIsOpenMyDropdown] = UseState(false);
+  const [isOpenMenu, setIsOpenMenu] = UseState(false);
   const { data: session } = useSession();
-  const [visible, setVisable] = useState(false);
+  const [visible, setVisable] = UseState(false);
   // click outside dropdown
-  // useEffect(() => {
+  // UseEffect(() => {
   //   const checkIfClickedOutside = (e) => {
   //     if (isOpenMyDropdown && !ref.current.contains(e.target)) {
   //       setIsOpenMyDropdown(false);

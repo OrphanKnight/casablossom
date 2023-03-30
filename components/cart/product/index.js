@@ -2,18 +2,18 @@ import styles from "./styles.module.scss";
 import { BsHeart, BsShop } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { UseDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../store/cartSlice";
-import { useState, useEffect } from "react";
+import { UseState, UseEffect } from "react";
 export default function Product({ product, selected, setSelected }) {
   const { cart } = useSelector((state) => ({ ...state }));
-  const [active, setActive] = useState();
+  const [active, setActive] = UseState();
 
-  useEffect(() => {
+  UseEffect(() => {
     const check = selected?.find((p) => p._uid == product._uid);
     setActive(check);
   }, [selected]);
-  const dispatch = useDispatch();
+  const dispatch = UseDispatch();
   const updateQty = (type) => {
     let newCart = cart.cartItems.map((p) => {
       if (p._uid == product._uid) {

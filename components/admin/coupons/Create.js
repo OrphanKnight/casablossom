@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useState } from "react";
+import { UseState } from "react";
 import styles from "./styles.module.scss";
 import * as Yup from "yup";
 import AdminInput from "../../inputs/adminInput";
@@ -9,12 +9,12 @@ import { TextField } from "@material-ui/core";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 export default function Create({ setCoupons }) {
-  const [name, setName] = useState("");
-  const [discount, setDiscount] = useState(0);
+  const [name, setName] = UseState("");
+  const [discount, setDiscount] = UseState(0);
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(tomorrow);
+  const [startDate, setStartDate] = UseState(new Date());
+  const [endDate, setEndDate] = UseState(tomorrow);
 
   const handleStartDate = (newValue) => {
     setStartDate(newValue);

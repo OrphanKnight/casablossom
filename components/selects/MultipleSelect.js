@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { UseEffect, UseState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
@@ -44,9 +44,9 @@ export default function MultipleSelect({
   disabled,
   ...rest
 }) {
-  const [subs, setSubs] = useState(data || []);
+  const [subs, setSubs] = UseState(data || []);
   const [field, meta] = useField(rest);
-  useEffect(() => {
+  UseEffect(() => {
     setSubs(data);
   }, [data]);
   const result = data.length
@@ -55,7 +55,7 @@ export default function MultipleSelect({
 
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.UseState([]);
   /*
   const handleChange = (event) => {
     setPersonName(event.target.value);

@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { UseRouter } from "next/router";
+import { UseState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 import styles from "../styles.module.scss";
@@ -9,9 +9,9 @@ export default function PatternsFilter({
   patternHandler,
   replaceQuery,
 }) {
-  const router = useRouter();
+  const router = UseRouter();
   const existedPattern = router.query.pattern || "";
-  const [show, setShow] = useState(true);
+  const [show, setShow] = UseState(true);
   return (
     <div className={styles.filter}>
       <h3>

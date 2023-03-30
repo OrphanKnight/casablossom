@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { UseDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import { toggleSidebar } from "../../../../store/ExpandSlice";
 //-----------------------
@@ -21,12 +21,12 @@ import {
 //-----------------------
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 export default function Sidebar() {
-  const router = useRouter();
+  const router = UseRouter();
   const route = router.pathname.split("/admin/dashboard/")[1];
   const { data: session } = useSession();
-  const dispatch = useDispatch();
+  const dispatch = UseDispatch();
   const { expandSidebar } = useSelector((state) => ({ ...state }));
   const expand = expandSidebar.expandSidebar;
   const handleExpand = () => {

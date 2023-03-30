@@ -12,11 +12,11 @@ import UseMe from "./topHeader/UseMe";
 // import link from "next/link";
 // import { RiSearch2Line } from "react-icons/ri";
 // import { useSelector } from "react-redux";
-// import { useState } from "react";
-// import { useRouter } from "next/router";
+// import { UseState } from "react";
+// import { UseRouter } from "next/router";
 export default function Header({ searchHandler }) {
-  // const router = useRouter();
-  // const [query, setQuery] = useState(router.query.search || "");
+  // const router = UseRouter();
+  // const [query, setQuery] = UseState(router.query.search || "");
   // const { cart } = useSelector((state) => ({ ...state }));
   // const handleSearch = (e) => {
   //   e.preventDefault();

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { UseState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 import styles from "../styles.module.scss";
 
 export default function GenderFilter({ genderHandler, replaceQuery }) {
   const genders = ["Men", "Women", "Unisex"];
-  const [show, setShow] = useState(true);
+  const [show, setShow] = UseState(true);
   return (
     <div className={styles.filter}>
       <h3>

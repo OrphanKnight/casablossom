@@ -3,9 +3,9 @@ import styles from "./styles.module.scss";
 import { AiTwotoneStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsCheckLg } from "react-icons/bs";
-import { useState } from "react";
+import { UseState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 export default function HeadingFilters({
   priceHandler,
   multiPriceHandler,
@@ -14,8 +14,8 @@ export default function HeadingFilters({
   ratingHandler,
   sortHandler,
 }) {
-  const router = useRouter();
-  const [show, setShow] = useState(false);
+  const router = UseRouter();
+  const [show, setShow] = UseState(false);
   const check = replaceQuery(
     "shipping",
     router.query.shipping == "0" ? false : "0"

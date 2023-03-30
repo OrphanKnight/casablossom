@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { UseState } from "react";
 import styles from "./styles.module.scss";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
@@ -14,10 +14,10 @@ export default function Summary({
   paymentMethod,
   selectedAddress,
 }) {
-  const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [error, setError] = useState("");
-  const [order_error, setOrder_Error] = useState("");
+  const [coupon, setCoupon] = UseState("");
+  const [discount, setDiscount] = UseState("");
+  const [error, setError] = UseState("");
+  const [order_error, setOrder_Error] = UseState("");
   const validateCoupon = Yup.object({
     coupon: Yup.string().required("Pleace enter a coupon first !"),
   });

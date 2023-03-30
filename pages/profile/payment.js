@@ -1,16 +1,16 @@
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { UseState } from "react";
 import Layout from "../../components/profile/layout";
 import User from "../../models/User";
 import Payment from "../../components/checkout/payment";
 import styles from "../../styles/profile.module.scss";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 export default function payment({ user, tab, defaultPaymentMethod }) {
-  const router = useRouter();
-  const [dbPM, setDbPM] = useState(defaultPaymentMethod);
-  const [paymentMethod, setPaymentMethod] = useState(defaultPaymentMethod);
-  const [error, setError] = useState("");
+  const router = UseRouter();
+  const [dbPM, setDbPM] = UseState(defaultPaymentMethod);
+  const [paymentMethod, setPaymentMethod] = UseState(defaultPaymentMethod);
+  const [error, setError] = UseState("");
   const handlePM = async () => {
     try {
       const { data } = await axios.put("/api/user/changePM", {

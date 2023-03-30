@@ -5,9 +5,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import db from "@/utils/db";
 import User from "@/models/User";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { useEffect, useReducer } from "react";
+import { UseEffect, useReducer } from "react";
 import StripePayment from "@/components/stripePayment";
-import { useDispatch } from "react-redux";
+import { UseDispatch } from "react-redux";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -35,7 +35,7 @@ export default function order({
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
+  UseEffect(() => {
     if (!orderData._id) {
       dispatch({
         type: "PAY_RESET",

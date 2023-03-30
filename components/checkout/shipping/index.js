@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { UseState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
@@ -30,8 +30,8 @@ const initialValues = {
   country: "",
 };
 export default function Shipping({ user, addresses, setAddresses, profile }) {
-  const [shipping, setShipping] = useState(initialValues);
-  const [visible, setVisible] = useState(user?.address.length ? false : true);
+  const [shipping, setShipping] = UseState(initialValues);
+  const [visible, setVisible] = UseState(user?.address.length ? false : true);
   const {
     firstName,
     lastName,

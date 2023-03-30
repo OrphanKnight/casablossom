@@ -1,11 +1,11 @@
 import Layout from "../../../components/admin/layout";
 import db from "../../../utils/db";
 import Category from "../../../models/Category";
-import { useState } from "react";
+import { UseState } from "react";
 import Create from "../../../components/admin/categories/Create";
 import List from "../../../components/admin/categories/List";
 export default function categories({ categories }) {
-  const [data, setData] = useState(categories);
+  const [data, setData] = UseState(categories);
   console.log(data);
   return (
     <Layout>

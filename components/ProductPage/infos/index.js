@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { UseRouter } from "next/router";
+import { UseEffect, UseState } from "react";
 import { TbPlus, TbMinus } from "react-icons/tb";
 import { BsHeart } from "react-icons/bs";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
@@ -11,17 +11,17 @@ import SimilarSwiper from "./similarswiper/SimilarSwiper";
 import ControlledAccordions from "./accordion/Accordion.js";
 import axios from "axios";
 import { addToCart, updateCart } from "@/store/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { UseDispatch, useSelector } from "react-redux";
 import { showDialog } from "@/store/DialogSlice";
 import DialogModal from "@/components/dialogModal";
 
 export default function Infos({ product, setActiveImg }) {
-  const router = useRouter();
-  const dispatch = useDispatch();
+  const router = UseRouter();
+  const dispatch = UseDispatch();
   const { data: session } = useSession();
-  const [qty, setQty] = useState(1);
-  const [size, setSize] = useState(router.query.size);
-  const [error, setError] = useState("");
+  const [qty, setQty] = UseState(1);
+  const [size, setSize] = UseState(router.query.size);
+  const [error, setError] = UseState("");
   const addToCartHandler = async () => {
     if (!router.query.size) {
       setError("Please Select a size");
@@ -98,12 +98,12 @@ export default function Infos({ product, setActiveImg }) {
   };
   //=========================================================
   const cart = useSelector((state) => state.cart);
-  useEffect(() => {
+  UseEffect(() => {
     setSize("");
     setQty(1);
   }, [router.query.style]);
   //==================================================
-  useEffect(() => {
+  UseEffect(() => {
     if (qty > product.quantity) {
       setQty(product.quantity);
     }

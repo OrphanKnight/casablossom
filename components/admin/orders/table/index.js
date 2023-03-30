@@ -17,7 +17,7 @@ import styles from "./styles.module.scss";
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.UseState(false);
 
   return (
     <React.Fragment>

@@ -4,7 +4,7 @@ import Product from "@/models/Product";
 import Header from "@/components/header";
 import Category from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
-import { useEffect, useState } from "react";
+import { UseEffect, UseState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import * as Yup from "yup";
@@ -13,7 +13,7 @@ import SingularSelect from "../../../../components/selects/SingularSelect";
 import MultipleSelect from "../../../../components/selects/MultipleSelect";
 import AdminInput from "../../../../components/inputs/adminInput";
 import DialogModal from "../../../../components/dialogModal";
-import { useDispatch } from "react-redux";
+import { UseDispatch } from "react-redux";
 import { showDialog } from "../../../../store/DialogSlice";
 import Images from "../../../../components/admin/createProduct/images";
 import Colors from "../../../../components/admin/createProduct/colors";
@@ -59,18 +59,18 @@ export default function product({ product, parents, categories }) {
     ],
     shippingFee: "",
   };
-  const [activeImg, setActiveImg] = useState("");
-  const [variant, setProuctVariant] = useState(initialState);
-  const [subs, setSubs] = useState([]);
-  const [colorImage, setColorImage] = useState("");
-  const [images, setImages] = useState(
+  const [activeImg, setActiveImg] = UseState("");
+  const [variant, setProuctVariant] = UseState(initialState);
+  const [subs, setSubs] = UseState([]);
+  const [colorImage, setColorImage] = UseState("");
+  const [images, setImages] = UseState(
     product.images.map((e) => (typeof e === "string" ? e : e.url))
   );
-  const [description_images, setDescription_images] = useState("");
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const [description_images, setDescription_images] = UseState("");
+  const [loading, setLoading] = UseState(false);
+  const dispatch = UseDispatch();
 
-  useEffect(() => {
+  UseEffect(() => {
     const getParentData = async () => {
       if (variant.parent) {
         const { data } = await axios.get(`/api/product/${variant.parent}`);
@@ -91,7 +91,7 @@ export default function product({ product, parents, categories }) {
     };
     getParentData();
   }, [variant.parent]);
-  useEffect(() => {
+  UseEffect(() => {
     async function getSubs() {
       const { data } = await axios.get("/api/admin/subCategory", {
         params: {

@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { UseState } from "react";
 import styles from "./styles.module.scss";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 import slugify from "slugify";
-import { useRouter } from "next/router";
+import { UseRouter } from "next/router";
 export default function Item({ item, visible, index }) {
-  const [show, setShow] = useState(visible);
-  const router = useRouter();
+  const [show, setShow] = UseState(visible);
+  const router = UseRouter();
   return (
     <li>
       {item.heading == "Sign out" ? (
