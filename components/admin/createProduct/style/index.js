@@ -2,7 +2,7 @@ import { ErrorMessage, useField } from "formik";
 import { useRef } from "react";
 import { FaStaylinked } from "react-icons/fa";
 import { RiDeleteBin7Fill, RiShape2Line } from "react-icons/ri";
-import { UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showDialog } from "../../../../store/DialogSlice";
 import styles from "./styles.module.scss";
 import { GiExtractionOrb } from "react-icons/gi";
@@ -13,7 +13,7 @@ export default function Style({
   colorImage,
   ...props
 }) {
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
   const fileInput = useRef(null);
   const [meta, field] = useField(props);
   const handleImage = (e) => {

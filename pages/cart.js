@@ -3,7 +3,7 @@ import Empty from "@/components/cart/empty";
 import Header from "@/components/cart/header";
 import Product from "@/components/cart/product";
 import styles from "@/styles/cart.module.scss";
-import { UseDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Checkout from "@/components/cart/checkout";
 import { useEffect, useState } from "react";
 import { Router, useRouter } from "next/router";
@@ -15,7 +15,7 @@ export default function Home({ country }) {
   const { data: session } = useSession();
   const [selected, setSelected] = useState([]);
   const { cart } = useSelector((state) => ({ ...state }));
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
 
   const [shippingFee, setShippingFee] = useState(0);
   const [subtotal, setSubtotal] = useState(0);

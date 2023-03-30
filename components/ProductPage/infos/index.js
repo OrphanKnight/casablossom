@@ -11,13 +11,13 @@ import SimilarSwiper from "./similarswiper/SimilarSwiper";
 import ControlledAccordions from "./accordion/Accordion.js";
 import axios from "axios";
 import { addToCart, updateCart } from "@/store/cartSlice";
-import { UseDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showDialog } from "@/store/DialogSlice";
 import DialogModal from "@/components/dialogModal";
 
 export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
   const { data: session } = useSession();
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState(router.query.size);

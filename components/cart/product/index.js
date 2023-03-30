@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import { BsHeart, BsShop } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { UseDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../store/cartSlice";
 import { useState, useEffect } from "react";
 export default function Product({ product, selected, setSelected }) {
@@ -13,7 +13,7 @@ export default function Product({ product, selected, setSelected }) {
     const check = selected?.find((p) => p._uid == product._uid);
     setActive(check);
   }, [selected]);
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
   const updateQty = (type) => {
     let newCart = cart.cartItems.map((p) => {
       if (p._uid == product._uid) {

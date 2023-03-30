@@ -13,7 +13,7 @@ import SingularSelect from "../../../../components/selects/SingularSelect";
 import MultipleSelect from "../../../../components/selects/MultipleSelect";
 import AdminInput from "../../../../components/inputs/adminInput";
 import DialogModal from "../../../../components/dialogModal";
-import { UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showDialog } from "../../../../store/DialogSlice";
 import Images from "../../../../components/admin/createProduct/images";
 import Colors from "../../../../components/admin/createProduct/colors";
@@ -68,7 +68,7 @@ export default function product({ product, parents, categories }) {
   );
   const [description_images, setDescription_images] = useState("");
   const [loading, setLoading] = useState(false);
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getParentData = async () => {

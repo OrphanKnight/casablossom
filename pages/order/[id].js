@@ -7,7 +7,7 @@ import User from "@/models/User";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useEffect, useReducer } from "react";
 import StripePayment from "@/components/stripePayment";
-import { UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function reducer(state, action) {
   switch (action.type) {

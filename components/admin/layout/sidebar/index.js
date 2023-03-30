@@ -1,4 +1,4 @@
-import { UseDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import { toggleSidebar } from "../../../../store/ExpandSlice";
 //-----------------------
@@ -26,7 +26,7 @@ export default function Sidebar() {
   const router = useRouter();
   const route = router.pathname.split("/admin/dashboard/")[1];
   const { data: session } = useSession();
-  const dispatch = UseDispatch();
+  const dispatch = useDispatch();
   const { expandSidebar } = useSelector((state) => ({ ...state }));
   const expand = expandSidebar.expandSidebar;
   const handleExpand = () => {
