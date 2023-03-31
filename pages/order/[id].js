@@ -55,7 +55,7 @@ export default function order({
     }
   }, [order]);
 
-  function createOrderHanlder(data, actions) {
+  function createOrderHandler(data, actions) {
     return actions.order
       .create({
         purchase_units: [
@@ -85,7 +85,7 @@ export default function order({
       }
     });
   }
-  function onErroHandler(error) {
+  function onErrorHandler(error) {
     console.log(error);
   }
   return (
@@ -249,9 +249,9 @@ export default function order({
                       <span>loading...</span>
                     ) : (
                       <PayPalButtons
-                        createOrder={createOrderHanlder}
+                        createOrder={createOrderHandler}
                         onApprove={onApproveHandler}
-                        onError={onErroHandler}
+                        onError={onErrorHandler}
                       ></PayPalButtons>
                     )}
                   </div>

@@ -23,6 +23,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 import { RiDeleteBin7Fill } from "react-icons/ri";
+import { AiOutlineEye } from "react-icons/ai";
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -86,6 +87,12 @@ const headCells = [
   },
   {
     id: "delete",
+    numeric: true,
+    disablePadding: false,
+    label: "",
+  },
+  {
+    id: "edit",
     numeric: true,
     disablePadding: false,
     label: "",
@@ -228,19 +235,19 @@ export default function EnhancedTable({ rows }) {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.email);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, email) => {
+    const selectedIndex = selected.indexOf(email);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, email);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -268,7 +275,7 @@ export default function EnhancedTable({ rows }) {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (email) => selected.indexOf(email) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -299,17 +306,17 @@ export default function EnhancedTable({ rows }) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.email);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.email)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.email}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -368,6 +375,9 @@ export default function EnhancedTable({ rows }) {
                       </TableCell>
                       <TableCell align="right">
                         <RiDeleteBin7Fill />
+                      </TableCell>
+                      <TableCell align="right">
+                        <AiOutlineEye />
                       </TableCell>
                     </TableRow>
                   );

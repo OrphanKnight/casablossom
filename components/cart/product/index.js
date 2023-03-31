@@ -119,6 +119,10 @@ export default function Product({ product, selected, setSelected }) {
               restocked.
             </div>
           )}
+          <div className={styles.discount}>
+            {" "}
+            {product.customize ? `Requested: ${product.customize}` : " "}
+          </div>
         </div>
       </div>
     </div>

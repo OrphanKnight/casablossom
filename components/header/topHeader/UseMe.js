@@ -16,27 +16,11 @@ export default function UseMe() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { data: session } = useSession();
   const [visible, setVisable] = useState(false);
-  // click outside dropdown
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e) => {
-  //     if (isOpenMyDropdown && !ref.current.contains(e.target)) {
-  //       setIsOpenMyDropdown(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", checkIfClickedOutside);
-  // }, [isOpenMyDropdown]);
-
   return (
     <header className={style.header} id="header">
       <nav className={`${style.navbar_items} ${style.navbar_container}`}>
         {/* Logo  */}
         <a href="/" className={style.brand}>
-          {/* <img
-            src="../../../images/logo.png"
-            alt="Logo"
-            className={style.brand__img}
-          /> */}
           CasaBlossom
         </a>
         {/* Toggler  */}
@@ -83,7 +67,7 @@ export default function UseMe() {
           </div>
         </div>
       </nav>
-      <header className={style.header} id="header">
+      <div className={style.header} id="header">
         <div className={style.menu_container}>
           <span
             className={`${style.overlay} ${isOpenMenu ? style.is_active : " "}`}
@@ -141,15 +125,15 @@ export default function UseMe() {
                   href="/cart"
                   onClick={() => setIsOpenMenu(false)}
                 >
-                  <span>
+                  <div className={style.cartImage}>
                     <FontAwesomeIcon icon={faCartShopping} />
-                  </span>
+                  </div>
                 </a>
               </li>
             </ul>
           </div>
         </div>
-      </header>
+      </div>
     </header>
   );
 }

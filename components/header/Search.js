@@ -21,14 +21,21 @@ export default function Search({ searchHandler }) {
   return (
     <div className={styles.main}>
       <div className={styles.main__container}>
-        <form onSubmit={(e) => handleSearch(e)} className={styles.searchbar}>
+        <form
+          onSubmit={(search) => handleSearch(search)}
+          className={styles.searchbar}
+        >
           <input
             type="text"
             placeholder="Search..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(search) => setQuery(search.target.value)}
           />
-          <button type="submit" className={styles.searchbar__icon}>
+          <button
+            type="submit"
+            className={styles.searchbar__icon}
+            aria-label="Search Submit"
+          >
             <RiSearch2Line />
           </button>
         </form>

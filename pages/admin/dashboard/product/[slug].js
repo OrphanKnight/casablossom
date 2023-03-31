@@ -1,4 +1,4 @@
-import styles from "@/styles/product.module.scss";
+import styles from "../../../../styles/products.module.scss";
 import db from "@/utils/db";
 import Product from "@/models/Product";
 import Header from "@/components/header";
@@ -24,8 +24,6 @@ import Questions from "../../../../components/admin/createProduct/clickToAdd/Que
 import { validateCreateProduct } from "../../../../utils/validation";
 import dataURItoBlob from "../../../../utils/dataURItoBlob";
 import { uploadImages } from "../../../../requests/upload";
-import ProductCards from "@/components/ProductPage/productCards";
-import Infos from "@/components/ProductPage/infos";
 import Layout from "../../../../components/admin/layout";
 
 export default function product({ product, parents, categories }) {
@@ -35,8 +33,7 @@ export default function product({ product, parents, categories }) {
   console.log("Quantity", product.quantity);
   console.log("Product", product);
   console.log("Colors", product.color);
-
-  const nameStrong = product.details;
+  console.log("Details", product.details);
   const initialState = {
     name: product.name,
     description: product.description,
@@ -50,7 +47,12 @@ export default function product({ product, parents, categories }) {
     subCategories: [],
     color: product.color,
     sizes: product.sizes,
-    details: product.details,
+    details: [
+      {
+        name: "",
+        value: "",
+      },
+    ],
     questions: [
       {
         question: "",
@@ -381,6 +383,7 @@ export async function getServerSideProps(context) {
     discount: subProduct.discount,
     sku: subProduct.sku,
     color: subProduct.color,
+    details: product.details,
     quantity: subProduct.sizes[size].qty,
   };
   db.disconnectDb();

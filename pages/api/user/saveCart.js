@@ -43,7 +43,7 @@ handler.post(async (req, res) => {
         subProduct.discount > 0
           ? (price - price / Number(subProduct.discount)).toFixed(2)
           : price.toFixed(2);
-
+      tempProduct.customize = cart[i].customize;
       products.push(tempProduct);
     }
     let cartTotal = 0;

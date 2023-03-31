@@ -21,6 +21,7 @@ export default function Infos({ product, setActiveImg }) {
   const { data: session } = useSession();
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState(router.query.size);
+  const [comment, setComment] = useState("");
   const [error, setError] = useState("");
   const addToCartHandler = async () => {
     if (!router.query.size) {
@@ -38,7 +39,7 @@ export default function Infos({ product, setActiveImg }) {
       setError("This Product is out of stock.");
       return;
     } else {
-      let _uid = `${data._id}_${product.style}_${router.query.size}`;
+      let _uid = `${data._id}_${product.style}_${router.query.size}_${comment}`;
       console.log(_uid);
       let exist = cart?.cartItems?.find((p) => p._uid === _uid);
       if (exist) {
@@ -55,6 +56,7 @@ export default function Infos({ product, setActiveImg }) {
             ...data,
             qty,
             size: data.size,
+            customize: comment,
             _uid,
           })
         );
@@ -108,6 +110,7 @@ export default function Infos({ product, setActiveImg }) {
       setQty(product.quantity);
     }
   }, [router.query.size]);
+  //==================================================
   return (
     <div className={styles.infos}>
       <DialogModal />
@@ -175,17 +178,33 @@ export default function Infos({ product, setActiveImg }) {
         </div>
 
         <div className={styles.infos__qty}>
-          <button onClick={() => qty > 1 && setQty((prev) => prev - 1)}>
+          <button onClick={() => qty > 1 && setQty((current) => current - 1)}>
             <TbMinus />
           </button>
           <span>{qty}</span>
           <button
-            onClick={() => qty < product.quantity && setQty((prev) => prev + 1)}
+            onClick={() =>
+              qty < product.quantity && setQty((current) => current + 1)
+            }
           >
             <TbPlus />
           </button>
         </div>
-
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">
+              Add Any Requests Here:
+            </label>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Write in Here..."
+              value={comment}
+              onChange={(charsInto) => setComment(charsInto.target.value)}
+            ></textarea>
+          </div>
+        </form>
         <div className={styles.infos__actions}>
           <button
             disabled={product.quantity < 1}
@@ -206,7 +225,7 @@ export default function Infos({ product, setActiveImg }) {
             details={[product.description, ...product.details]}
           />
           <Socials />
-          <SimilarSwiper />
+          <SimilarSwiper key="" />
         </>
       </div>
     </div>

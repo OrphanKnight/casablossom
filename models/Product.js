@@ -70,6 +70,7 @@ const productSchema = new mongoose.Schema(
         answer: String,
       },
     ],
+
     reviews: [reviewSchema],
     refundPolicy: {
       type: String,
@@ -118,6 +119,17 @@ const productSchema = new mongoose.Schema(
           type: Number,
           default: 0,
         },
+        info: [
+          {
+            name: String,
+            value: String,
+          },
+        ],
+        customize: [
+          {
+            customization: String,
+          },
+        ],
       },
     ],
   },

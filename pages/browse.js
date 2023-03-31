@@ -10,7 +10,7 @@ import {
   removeDuplicates,
 } from "../utils/arrays_utils";
 import Link from "next/link";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "@/components/productCard";
 import CategoryFilter from "../components/browse/categoryFilter";
 import SizesFilter from "../components/browse/sizesFilter";
 import ColorsFilter from "../components/browse/colorsFilter";
@@ -196,100 +196,100 @@ export default function Browse({
   console.log(scrollY, height);
   //---------------------------------
   return (
-    <div className={styles.browse}>
+    <>
       <div className={styles.header_container}>
         <Header searchHandler={searchHandler} />
       </div>
-      <div ref={headerRef}></div>
-      <div className={styles.browse__container}>
-        <div ref={el}>
-          <div className={styles.browse__path}>Home / Browse</div>
-          <div className={styles.browse__tags}>
-            {categories.map((c) => (
-              <Link href="" key={c._id} legacyBehavior>
-                <a>{c.name}</a>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div
-          className={`${styles.browse__store} ${
-            scrollY >= height ? styles.fixed : ""
-          }`}
-        >
-          <div
-            className={`${styles.browse__store_filters} ${styles.scrollbar}`}
-          >
-            <button
-              className={styles.browse__clearBtn}
-              onClick={() => router.push("/browse")}
-            >
-              Clear All ({Object.keys(router.query).length})
-            </button>
-            <CategoryFilter
-              categories={categories}
-              subCategories={subCategories}
-              categoryHandler={categoryHandler}
-              replaceQuery={replaceQuery}
-            />
-            <SizesFilter sizes={sizes} sizeHandler={sizeHandler} />
-            <ColorsFilter
-              colors={colors}
-              colorHandler={colorHandler}
-              replaceQuery={replaceQuery}
-            />
-            <BrandsFilter
-              brands={brands}
-              brandHandler={brandHandler}
-              replaceQuery={replaceQuery}
-            />
-            <StylesFilter
-              data={stylesData}
-              styleHandler={styleHandler}
-              replaceQuery={replaceQuery}
-            />
-            <PatternsFilter
-              patterns={patterns}
-              patternHandler={patternHandler}
-              replaceQuery={replaceQuery}
-            />
-            <MaterialsFilter
-              materials={materials}
-              materialHandler={materialHandler}
-              replaceQuery={replaceQuery}
-            />
-            <GenderFilter
-              genderHandler={genderHandler}
-              replaceQuery={replaceQuery}
-            />
-          </div>
-          <div className={styles.browse__store_products_wrap}>
-            <HeadingFilters
-              priceHandler={priceHandler}
-              multiPriceHandler={multiPriceHandler}
-              shippingHandler={shippingHandler}
-              ratingHandler={ratingHandler}
-              replaceQuery={replaceQuery}
-              sortHandler={sortHandler}
-            />
-            <div className={styles.browse__store_products}>
-              {products.map((product) => (
-                <ProductCard product={product} key={product._id} />
+      <div className={styles.browse}>
+        <div ref={headerRef}></div>
+        <div className={styles.browse__container}>
+          <div ref={el}>
+            <div className={styles.browse__path}>Home / Browse</div>
+            <div className={styles.browse__tags}>
+              {categories.map((c) => (
+                <Link href="" key={c._id} legacyBehavior>
+                  <a>{c.name}</a>
+                </Link>
               ))}
             </div>
-            <div className={styles.pagination}>
-              <Pagination
-                count={paginationCount}
-                defaultPage={Number(router.query.page) || 1}
-                onChange={pageHandler}
-                variant="outlined"
-                color="primary"
+          </div>
+          <div
+            className={`${styles.browse__store} ${scrollY >= height ? "" : ""}`}
+          >
+            <div
+              className={`${styles.browse__store_filters} ${styles.scrollbar}`}
+            >
+              <button
+                className={styles.browse__clearBtn}
+                onClick={() => router.push("/browse")}
+              >
+                Clear All ({Object.keys(router.query).length})
+              </button>
+              <CategoryFilter
+                categories={categories}
+                subCategories={subCategories}
+                categoryHandler={categoryHandler}
+                replaceQuery={replaceQuery}
               />
+              <SizesFilter sizes={sizes} sizeHandler={sizeHandler} />
+              <ColorsFilter
+                colors={colors}
+                colorHandler={colorHandler}
+                replaceQuery={replaceQuery}
+              />
+              <BrandsFilter
+                brands={brands}
+                brandHandler={brandHandler}
+                replaceQuery={replaceQuery}
+              />
+              <StylesFilter
+                data={stylesData}
+                styleHandler={styleHandler}
+                replaceQuery={replaceQuery}
+              />
+              <PatternsFilter
+                patterns={patterns}
+                patternHandler={patternHandler}
+                replaceQuery={replaceQuery}
+              />
+              <MaterialsFilter
+                materials={materials}
+                materialHandler={materialHandler}
+                replaceQuery={replaceQuery}
+              />
+              <GenderFilter
+                genderHandler={genderHandler}
+                replaceQuery={replaceQuery}
+              />
+            </div>
+            <div className={styles.browse__store_products_wrap}>
+              <HeadingFilters
+                priceHandler={priceHandler}
+                multiPriceHandler={multiPriceHandler}
+                shippingHandler={shippingHandler}
+                ratingHandler={ratingHandler}
+                replaceQuery={replaceQuery}
+                sortHandler={sortHandler}
+              />
+              <div className={styles.browse__store_products}>
+                {products.map((product) => (
+                  <ProductCard product={product} key={product._id} />
+                ))}
+              </div>
+              <div className={styles.pagination}>
+                <Pagination
+                  count={paginationCount}
+                  defaultPage={Number(router.query.page) || 1}
+                  onChange={pageHandler}
+                  variant="outlined"
+                  color="primary"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -303,7 +303,7 @@ export async function getServerSideProps(ctx) {
   const shippingQuery = query.shipping || 0;
   const ratingQuery = query.rating || "";
   const sortQuery = query.sort || "";
-  const pageSize = 50;
+  const pageSize = 10;
   const page = query.page || 1;
 
   //-----------

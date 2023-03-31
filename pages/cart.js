@@ -16,7 +16,6 @@ export default function Home({ country }) {
   const [selected, setSelected] = useState([]);
   const { cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
   const [shippingFee, setShippingFee] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);

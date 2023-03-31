@@ -25,10 +25,10 @@ export default function SimilarSwiper() {
         },
       }}
     >
-      {similar_products.map((p) => (
+      {similar_products.map((productImage) => (
         <SwiperSlide>
           <Link href="/">
-            <img src={p} alt="" />
+            <img src={productImage} alt="" />
           </Link>
         </SwiperSlide>
       ))}
