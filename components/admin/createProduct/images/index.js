@@ -21,7 +21,7 @@ export default function Images({
   const handleImages = (e) => {
     let files = Array.from(e.target.files);
     files.forEach((img, i) => {
-      if (images.length > 6) {
+      if (images.length == 6) {
         dispatch(
           showDialog({
             header: "Maximum 6 images are allowed.",
@@ -146,10 +146,8 @@ export default function Images({
       </div>
       <button
         type="reset"
-        disabled={images.length > 6 || images.length < 3}
-        style={{
-          opacity: `${(images.length > 6 || images.length < 3) && "0.5"}`,
-        }}
+        disabled={images.length == 6}
+        style={{ opacity: `${images.length == 6 && "0.5"}` }}
         onClick={() => fileInput.current.click()}
         className={`${styles.btn} ${styles.btn__primary}`}
       >

@@ -10,7 +10,7 @@ import {
 import { useSession } from "next-auth/react";
 import UserMenu from "../UserMenu";
 import SearchBar from "../Search";
-export default function UseMe() {
+export default function UseMe({ searchHandler }) {
   const ref = useRef();
   const [isOpenMyDropdown, setIsOpenMyDropdown] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -37,7 +37,7 @@ export default function UseMe() {
         </div>
         {/* Search BAr  */}
 
-        <SearchBar />
+        <SearchBar searchHandler={searchHandler} />
         {/* Menu Item  */}
         <div className={style.dropdown_container} ref={ref}>
           <div className={style.wrap_container}>
@@ -136,54 +136,4 @@ export default function UseMe() {
       </div>
     </header>
   );
-}
-{
-  /* <div className={style.search_container}>
-          <div className={style.search_block}>
-            <form className={style.search_form}>
-              <input
-                type="search"
-                name="search"
-                className={style.search_input}
-                placeholder="Search here..."
-              />
-            </form>
-          </div>
-        </div> */
-}
-{
-  /* <div className={style.dropdown_container} ref={ref}>
-          <div className={style.profile_photo}>
-            <div
-              className={style.li}
-              onClick={() => setIsOpenMyDropdown(!isOpenMyDropdown)}
-            >
-              <RiAccountPinCircleLine />
-              <span>Account</span>
-              <RiArrowDropDownFill />
-            </div>
-          </div>
-          <div
-            id="myDropdown"
-            className={`${style.dropdown_content} ${
-              isOpenMyDropdown ? style.show : ""
-            }`}
-          >
-            <div className={style.user_photo}>
-              <img src={session?.user?.image} alt="" />
-              <div className={style.user_details}>
-                <p className={style.username}>username</p>
-                <p className={style.email}>info@gmail.com</p>
-                <a className={style.signOut} href="#">
-                  Sign Out
-                </a>
-              </div>
-            </div>
-            <div className={style.user_link}>
-              <a href="#">Profile</a>
-              <a href="#">Order</a>
-              <a href="#">Billing</a>
-            </div>
-          </div>
-        </div> */
 }

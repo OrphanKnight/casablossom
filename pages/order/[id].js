@@ -40,6 +40,7 @@ export default function order({
       dispatch({
         type: "PAY_RESET",
       });
+      console.log(orderData._id);
     } else {
       paypalDispatch({
         type: "resetOptions",
@@ -78,7 +79,6 @@ export default function order({
           details,
           order_id: orderData._id,
         });
-        console.log(data);
         dispatch({ type: "PAY_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "PAY_ERROR", payload: error });

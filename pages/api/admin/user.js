@@ -14,7 +14,7 @@ handler.post(async (req, res) => {
     if (test) {
       return res
         .status(400)
-        .json({ message: "User already exist, Try a different name" });
+        .json({ message: "User already exists, Try a different name" });
     }
     await new User({ name, slug: slugify(name) }).save();
 

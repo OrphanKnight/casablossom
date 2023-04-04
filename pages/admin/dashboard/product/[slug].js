@@ -33,7 +33,15 @@ export default function product({ product, parents, categories }) {
   console.log("Quantity", product.quantity);
   console.log("Product", product);
   console.log("Colors", product.color);
-  console.log("Details", product.details);
+
+  const initialDetail = product.details.map((p) => {
+    return {
+      name: p.name,
+      value: p.value,
+    };
+  });
+
+  console.log("Details", typeof product.details);
   const initialState = {
     name: product.name,
     description: product.description,
@@ -47,12 +55,7 @@ export default function product({ product, parents, categories }) {
     subCategories: [],
     color: product.color,
     sizes: product.sizes,
-    details: [
-      {
-        name: "",
-        value: "",
-      },
-    ],
+    details: initialDetail,
     questions: [
       {
         question: "",
@@ -86,7 +89,7 @@ export default function product({ product, parents, categories }) {
             category: data.category,
             subCategories: data.subCategories,
             questions: [],
-            details: [],
+            details: variant.details,
           });
         }
       }
@@ -142,13 +145,14 @@ export default function product({ product, parents, categories }) {
   };
   let uploaded_images = [];
   let style_img = "";
+  console.log("color.color", variant.color.color);
   const createProductHandler = async () => {
     setLoading(true);
     //Edit here to scan if input is a string of "data:image/"
 
     for (let i = 0; i < images.length; i++) {
-      if (images[i].startsWith("data:image/")) {
-        if (images) {
+      if (images) {
+        if (images[i].startsWith("data:image/")) {
           let temp = images.map((img) => {
             return dataURItoBlob(img);
           });
@@ -160,33 +164,34 @@ export default function product({ product, parents, categories }) {
           });
           uploaded_images = await uploadImages(formData);
         }
-        if (variant.color.image) {
-          let temp = dataURItoBlob(variant.color.image);
-          let path = "product style images";
-          let formData = new FormData();
-          formData.append("path", path);
-          formData.append("file", temp);
-          let cloudinary_style_img = await uploadImages(formData);
-          style_img = cloudinary_style_img[0].url;
-        }
-        try {
-          const { data } = await axios.post("/api/admin/product", {
-            ...variant,
-            images: uploaded_images,
-            color: {
-              image: style_img,
-              color: variant.color.color,
-            },
-          });
-          setLoading(false);
-          toast.success(data.message);
-        } catch (error) {
-          setLoading(false);
-          toast.error(error.response.data.message);
-        }
+      }
+      if (variant.color.image) {
+        let temp = dataURItoBlob(variant.color.image);
+        let path = "product style images";
+        let formData = new FormData();
+        formData.append("path", path);
+        formData.append("file", temp);
+        let cloudinary_style_img = await uploadImages(formData);
+        style_img = cloudinary_style_img[0].url;
+      }
+      try {
+        const { data } = await axios.post("/api/admin/product", {
+          ...variant,
+          images: uploaded_images,
+          color: {
+            image: style_img,
+            color: variant.color.color,
+          },
+        });
+        setLoading(false);
+        toast.success(data.message);
+      } catch (error) {
+        setLoading(false);
+        toast.error(error.response.data.message);
       }
     }
   };
+
   return (
     <Layout>
       <div className={styles.header}>Create Product</div>

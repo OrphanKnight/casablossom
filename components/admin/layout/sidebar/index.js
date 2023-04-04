@@ -58,22 +58,6 @@ export default function Sidebar() {
           </div>
         </div>
         <ul className={styles.sidebar__list}>
-          <li className={route == undefined ? styles.active : ""}>
-            <Link href="/admin/dashboard" legacyBehavior>
-              <a>
-                <MdSpaceDashboard />
-                <span className={styles.show}>Dashboard</span>
-              </a>
-            </Link>
-          </li>
-          <li className={route == "sales" ? styles.active : ""}>
-            <Link href="/admin/dashboard/sales" legacyBehavior>
-              <a>
-                <FcSalesPerformance />
-                <span className={styles.show}>Sales</span>
-              </a>
-            </Link>
-          </li>
           <li className={route == "orders" ? styles.active : ""}>
             <Link href="/admin/dashboard/orders" legacyBehavior>
               <a>
@@ -87,14 +71,6 @@ export default function Sidebar() {
               <a>
                 <ImUsers />
                 <span className={styles.show}>Users</span>
-              </a>
-            </Link>
-          </li>
-          <li className={route == "messages" ? styles.active : ""}>
-            <Link href="/admin/dashboard/messages" legacyBehavior>
-              <a>
-                <AiFillMessage />
-                <span className={styles.show}>Messages</span>
               </a>
             </Link>
           </li>
@@ -190,7 +166,7 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link href="" legacyBehavior>
+              <Link href="/" legacyBehavior>
                 <a>
                   <RiLogoutCircleFill />
                 </a>
