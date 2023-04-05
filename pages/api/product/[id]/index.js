@@ -28,6 +28,8 @@ handler.get(async (req, res) => {
       images: product.subProducts[style].images,
       color: product.subProducts[style].color,
       size: product.subProducts[style].sizes[size].size,
+      sizes: product.subProducts[style].sizes,
+      detail: product.details,
       customize: "",
       price,
       priceBefore,

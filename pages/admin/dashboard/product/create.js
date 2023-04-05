@@ -68,12 +68,20 @@ export default function create({ parents, categories }) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
+  console.log("Parent", parents);
   useEffect(() => {
     const getParentData = async () => {
       if (product.parent) {
         const { data } = await axios.get(`/api/product/${product.parent}`);
-        console.log(data);
+        console.log("Data", data);
+
         if (data) {
+          const initialDetail = data.detail.map((p) => {
+            return {
+              name: p.name,
+              value: p.value,
+            };
+          });
           setProduct({
             ...product,
             name: data.name,
@@ -82,7 +90,8 @@ export default function create({ parents, categories }) {
             category: data.category,
             subCategories: data.subCategories,
             questions: [],
-            details: [],
+            sizes: data.sizes,
+            details: initialDetail,
           });
         }
       }
@@ -311,24 +320,6 @@ export default function create({ parents, categories }) {
               product={product}
               setProduct={setProduct}
             />
-            <Questions
-              questions={product.questions}
-              product={product}
-              setProduct={setProduct}
-            />
-            {/*
-            <Images
-              name="imageDescInputFile"
-              header="Product Description Images"
-              text="Add images"
-              images={description_images}
-              setImages={setDescriptionImages}
-              setColorImage={setColorImage}
-            />
-           
-       
-          
-            */}
             <button
               className={`${styles.btn} ${styles.btn__primary} ${styles.submit_btn}`}
               type="submit"
@@ -344,7 +335,7 @@ export default function create({ parents, categories }) {
 
 export async function getServerSideProps(ctx) {
   db.connectDb();
-  const results = await Product.find().select("name subProducts").lean();
+  const results = await Product.find().select("name subProducts sizes").lean();
   const categories = await Category.find().lean();
   db.disconnectDb();
   return {

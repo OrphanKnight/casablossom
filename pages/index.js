@@ -17,7 +17,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ country, products }) {
   console.log("product", products);
-  const { data: session } = useSession();
   return (
     <>
       <Header />
@@ -35,18 +34,9 @@ export default function Home({ country, products }) {
 export async function getServerSideProps() {
   db.connectDb();
   let products = await Product.find().sort({ createdAt: -1 }).lean();
-  let data = await axios
-    .get("https://api.ipregistry.co/66.165.2.7?key=g0c4a44q7n0m6edu")
-    .then((res) => {
-      return res.data.location.country;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
-      country: data,
     },
   };
 }

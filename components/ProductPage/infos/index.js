@@ -121,7 +121,7 @@ export default function Infos({ product, setActiveImg }) {
           {!size ? <h2>{product.priceRange}</h2> : <h1>${product.price}</h1>}
           {product.discount > 0 ? (
             <h3>
-              {size && <span>{product.priceBefore}$</span>}
+              {size && <span>${product.priceBefore}</span>}
               <span>(-{product.discount}%)</span>
             </h3>
           ) : (

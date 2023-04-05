@@ -119,7 +119,7 @@ const productSchema = new mongoose.Schema(
           type: Number,
           default: 0,
         },
-        info: [
+        details: [
           {
             name: String,
             value: String,

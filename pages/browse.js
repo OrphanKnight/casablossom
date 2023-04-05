@@ -303,7 +303,7 @@ export async function getServerSideProps(ctx) {
   const shippingQuery = query.shipping || 0;
   const ratingQuery = query.rating || "";
   const sortQuery = query.sort || "";
-  const pageSize = 10;
+  const pageSize = 12;
   const page = query.page || 1;
 
   //-----------
