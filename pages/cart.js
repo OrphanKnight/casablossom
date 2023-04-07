@@ -10,7 +10,7 @@ import { Router, useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import { saveCart } from "@/requests/user";
 
-export default function Home({ country }) {
+export default function Cart({ country }) {
   const Router = useRouter();
   const { data: session } = useSession();
   const [selected, setSelected] = useState([]);

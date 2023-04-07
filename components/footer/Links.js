@@ -5,7 +5,7 @@ export default function Links() {
   return (
     <div className={styles.footer__links}>
       {links.map((link, i) => (
-        <ul>
+        <ul key={link[i]}>
           {i === 0 ? (
             <a href="#">
               <svg
@@ -131,7 +131,7 @@ export default function Links() {
             <b>{link.heading}</b>
           )}
           {link.links.map((link) => (
-            <li>
+            <li key={link}>
               <Link href={link.link}>{link.name}</Link>
             </li>
           ))}

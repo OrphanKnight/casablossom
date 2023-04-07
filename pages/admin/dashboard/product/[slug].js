@@ -26,7 +26,7 @@ import dataURItoBlob from "../../../../utils/dataURItoBlob";
 import { uploadImages } from "../../../../requests/upload";
 import Layout from "../../../../components/admin/layout";
 
-export default function product({ product, parents, categories }) {
+export default function Edit({ product, parents, categories }) {
   console.log("Colors", product.colors);
   console.log("Sizes", product.sizes);
   console.log("SKU", product.sku);

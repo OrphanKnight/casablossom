@@ -32,8 +32,8 @@ export default function SimilarSwiper({ products }) {
         },
       }}
     >
-      {randomProperty.map((product) => (
-        <SwiperSlide>
+      {randomProperty.map((product, i) => (
+        <SwiperSlide key={i}>
           <Link href={`/product/${product.slug}?style=0`}>
             <img src={product.subProducts[0].images[0].url} alt="" />
           </Link>

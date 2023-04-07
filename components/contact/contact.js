@@ -32,7 +32,7 @@ export const ContactUs = () => {
       <div className={styles.login__container}>
         <div className={styles.login__header}>
           <span>
-            We'd be happy to join us ! <Link href="/">Go Store</Link>
+            We&apos;d be happy to join us ! <Link href="/">Go Store</Link>
           </span>
         </div>
         <div className={styles.login__form}>

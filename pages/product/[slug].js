@@ -9,7 +9,7 @@ import ProductCards from "@/components/ProductPage/productCards";
 import Infos from "@/components/ProductPage/infos";
 import { randomize } from "@/utils/arrays_utils";
 
-export default function product({ product, products }) {
+export default function ProductPage({ product, products }) {
   const [activeImg, setActiveImg] = useState("");
   return (
     <>
@@ -19,7 +19,7 @@ export default function product({ product, products }) {
           <div className={styles.path}>
             Home / {product.category.name}
             {product.subCategories.map((sub) => (
-              <span>/{sub.name}</span>
+              <span key={sub}>/{sub.name}</span>
             ))}
           </div>
           <div className={styles.product__main}>

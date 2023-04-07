@@ -105,7 +105,7 @@ export default function Shipping({ user, addresses, setAddresses, profile }) {
       )}
       <div className={styles.addresses}>
         {addresses?.map((address) => (
-          <div style={{ position: "relative" }}>
+          <div key={address._id} style={{ position: "relative" }}>
             <div
               className={styles.address__delete}
               onClick={() => deleteHandler(address._id)}
@@ -113,8 +113,8 @@ export default function Shipping({ user, addresses, setAddresses, profile }) {
               <IoIosRemoveCircleOutline />
             </div>
             <div
-              className={`${styles.address} ${address.active && styles.active}`}
               key={address._id}
+              className={`${styles.address} ${address.active && styles.active}`}
               onClick={() => changeActiveHandler(address._id)}
             >
               <div className={styles.address__side}>

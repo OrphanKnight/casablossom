@@ -5,7 +5,7 @@ import Product from "@/models/Product";
 import styles from "@/styles/products.module.scss";
 import db from "@/utils/db";
 
-export default function all({ products }) {
+export default function All({ products }) {
   console.log(products);
   return (
     <Layout>

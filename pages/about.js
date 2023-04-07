@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import React from "react";
 import styles from "../styles/about.module.scss";
+import Link from "next/link";
 export default function About() {
   return (
     <div>
@@ -19,9 +20,9 @@ export default function About() {
                   us becoming the top store in Miami, or click to the button
                   continue shopping
                 </p>
-                <a className="btn btn-outline-secondary" href="/browse">
+                <Link className="btn btn-outline-secondary" href="/browse">
                   Shop Now
-                </a>
+                </Link>
               </div>
               <div className="product-device shadow-sm d-none d-md-block" />
               <div className="product-device product-device-2 shadow-sm d-none d-md-block" />

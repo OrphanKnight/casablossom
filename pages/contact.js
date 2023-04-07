@@ -4,7 +4,7 @@ import Header from "@/components/header";
 
 import React from "react";
 
-export default function contact() {
+export default function Contact() {
   return (
     <>
       <Header />

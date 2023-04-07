@@ -8,7 +8,7 @@ import Order from "../../models/Order";
 import styles from "../../styles/profile.module.scss";
 import { FiExternalLink } from "react-icons/fi";
 import slugify from "slugify";
-export default function orders({ user, tab, orders }) {
+export default function Orders({ user, tab, orders }) {
   const router = useRouter();
   return (
     <Layout session={user.user} tab={tab}>
@@ -55,8 +55,8 @@ export default function orders({ user, tab, orders }) {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <tr>
+            {orders.map((order, i) => (
+              <tr key={i}>
                 <td>{order._id}</td>
                 <td className={styles.orders__images}>
                   {order.products.map((p) => (

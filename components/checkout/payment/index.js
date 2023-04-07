@@ -28,8 +28,10 @@ export default function Payment({ paymentMethod, setPaymentMethod, profile }) {
             <span>Pay with {pm.name}</span>
             <p>
               {pm.images.length > 0
-                ? pm.images.map((img) => (
-                    <img src={`../../../images/payment/${img}.webp`} alt="" />
+                ? pm.images.map((img, i) => (
+                    <div key={img[i]}>
+                      <img src={`../../../images/payment/${img}.webp`} alt="" />
+                    </div>
                   ))
                 : pm.description}
             </p>

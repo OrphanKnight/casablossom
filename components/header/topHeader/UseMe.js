@@ -10,6 +10,7 @@ import {
 import { useSession } from "next-auth/react";
 import UserMenu from "../UserMenu";
 import SearchBar from "../Search";
+import Link from "next/link";
 export default function UseMe({ searchHandler }) {
   const ref = useRef();
   const [isOpenMyDropdown, setIsOpenMyDropdown] = useState(false);
@@ -20,9 +21,9 @@ export default function UseMe({ searchHandler }) {
     <header className={style.header} id="header">
       <nav className={`${style.navbar_items} ${style.navbar_container}`}>
         {/* Logo  */}
-        <a href="/" className={style.brand}>
+        <Link href="/" className={style.brand}>
           CasaBlossom
-        </a>
+        </Link>
         {/* Toggler  */}
         <div
           className={style.burger}
@@ -82,45 +83,45 @@ export default function UseMe({ searchHandler }) {
                 <a className={style.menu_logo}>CasaBlossom</a>
               </li>
               <li className={style.menu_item}>
-                <a
+                <Link
                   className={style.menu_link}
                   href="/"
                   onClick={() => setIsOpenMenu(false)}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className={style.menu_item}>
-                <a
+                <Link
                   className={style.menu_link}
                   href="/browse"
                   onClick={() => setIsOpenMenu(false)}
                 >
                   Shop
-                </a>
+                </Link>
               </li>
               <li className={style.menu_item}>
-                <a
+                <Link
                   className={style.menu_link}
                   href="/about"
                   onClick={() => setIsOpenMenu(false)}
                 >
                   About
-                </a>
+                </Link>
               </li>
               <div className={style.no_wrap}>
                 <li className={style.menu_item}>
-                  <a
+                  <Link
                     className={style.menu_link}
                     href="/contact"
                     onClick={() => setIsOpenMenu(false)}
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
               </div>
               <li className={style.menu_item}>
-                <a
+                <Link
                   className={style.menu_link}
                   href="/cart"
                   onClick={() => setIsOpenMenu(false)}
@@ -128,7 +129,7 @@ export default function UseMe({ searchHandler }) {
                   <div className={style.cartImage}>
                     <FontAwesomeIcon icon={faCartShopping} />
                   </div>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
