@@ -31,7 +31,7 @@ export default function UserMenu({ session }) {
       )}
       <ul>
         <li>
-          <Link href="/profile/">Profile</Link>
+          <Link href="/profile/address">Profile</Link>
         </li>
         <li>
           <Link href="/profile/orders">My Orders</Link>

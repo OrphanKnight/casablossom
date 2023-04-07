@@ -237,7 +237,7 @@ export default function Browse({
                 colorHandler={colorHandler}
                 replaceQuery={replaceQuery}
               />
-              <BrandsFilter
+              {/* <BrandsFilter
                 brands={brands}
                 brandHandler={brandHandler}
                 replaceQuery={replaceQuery}
@@ -260,7 +260,7 @@ export default function Browse({
               <GenderFilter
                 genderHandler={genderHandler}
                 replaceQuery={replaceQuery}
-              />
+              /> */}
             </div>
             <div className={styles.browse__store_products_wrap}>
               <HeadingFilters

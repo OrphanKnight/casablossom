@@ -149,35 +149,46 @@ export default function product({ product, parents, categories }) {
   const createProductHandler = async () => {
     setLoading(true);
     //Edit here to scan if input is a string of "data:image/"
+    if (images) {
+      const rawToUpload = [];
+      const rememberOrder = [];
 
-    for (let i = 0; i < images.length; i++) {
-      if (images) {
+      for (let i = 0; i < images.length; i++) {
         if (images[i].startsWith("data:image/")) {
-          let temp = images.map((img) => {
-            return dataURItoBlob(img);
-          });
-          const path = "product images";
-          let formData = new FormData();
-          formData.append("path", path);
-          temp.forEach((image) => {
-            formData.append("file", image);
-          });
-          uploaded_images = await uploadImages(formData);
+          rawToUpload.push(dataURItoBlob(images[i]));
+          rememberOrder.push(i);
         }
       }
+      console.log("rawToUpload", rawToUpload);
+      const path = "product images";
+      let formData = new FormData();
+      formData.append("path", path);
+      rawToUpload.forEach((image) => {
+        formData.append("file", image);
+      });
+      uploaded_images = await uploadImages(formData);
+      uploaded_images.forEach((uploaded_image, i) => {
+        images[rememberOrder[i]] = uploaded_image;
+      });
+
       if (variant.color.image) {
-        let temp = dataURItoBlob(variant.color.image);
-        let path = "product style images";
-        let formData = new FormData();
-        formData.append("path", path);
-        formData.append("file", temp);
-        let cloudinary_style_img = await uploadImages(formData);
-        style_img = cloudinary_style_img[0].url;
+        if (variant.color.image.startsWith("data:image/")) {
+          let temp = dataURItoBlob(variant.color.image);
+          let path = "product style images";
+          let formData = new FormData();
+          formData.append("path", path);
+          formData.append("file", temp);
+          let cloudinary_style_img = await uploadImages(formData);
+          style_img = cloudinary_style_img[0].url;
+        } else {
+          style_img = variant.color.image;
+        }
       }
       try {
-        const { data } = await axios.post("/api/admin/product", {
+        const { data } = await axios.put("/api/admin/product", {
+          _id: product._id,
           ...variant,
-          images: uploaded_images,
+          images: images,
           color: {
             image: style_img,
             color: variant.color.color,

@@ -60,4 +60,50 @@ handler.post(async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+handler.put(async (req, res) => {
+  try {
+    await db.connectDb();
+
+    const productData = req.body;
+
+    // Find product by id and update it with new data
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productData._id,
+      productData,
+      { new: true }
+    );
+
+    await db.disconnectDb();
+
+    if (updatedProduct) {
+      res
+        .status(200)
+        .json({ message: "Product updated successfully", updatedProduct });
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+handler.delete(async (req, res) => {
+  try {
+    db.connectDb();
+    const { productID, subProductId } = req.body;
+    const product = await Product.findById(productID);
+    await product.updateOne(
+      {
+        $pull: { subProducts: { _id: subProductId } },
+      },
+      { new: true }
+    );
+    db.disconnectDb();
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
 export default handler;

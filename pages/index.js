@@ -12,6 +12,7 @@ import Product from "@/models/Product";
 import ProductCard from "@/components/productCard";
 import Category from "@/components/home/category";
 import { flowers, women_accessories, women_shoes } from "@/data/home";
+import SimilarSwiper from "@/components/ProductPage/infos/similarswiper/SimilarSwiper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,6 @@ export default function Home({ country, products }) {
     <>
       <Header />
       <MainSwiper />
-
       <div className={styles.home}>
         <div className={styles.container}>
           <Main />

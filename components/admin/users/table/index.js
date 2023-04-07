@@ -24,6 +24,7 @@ import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { AiOutlineEye } from "react-icons/ai";
+import axios from "axios";
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -258,7 +259,7 @@ export default function EnhancedTable({ rows }) {
         selected.slice(selectedIndex + 1)
       );
     }
-
+    console.log("newSelected", newSelected);
     setSelected(newSelected);
   };
 
@@ -277,6 +278,24 @@ export default function EnhancedTable({ rows }) {
 
   const isSelected = (email) => selected.indexOf(email) !== -1;
 
+  const deleteUser = async (email) => {
+    try {
+      const { data } = await axios.delete("/api/admin/users", {
+        data: { email },
+      });
+      return data;
+      window.location.reload(true);
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };
+
+  const deleteThis = async (email) => {
+    deleteUser(email);
+    setTimeout(function () {
+      window.location.reload(true);
+    }, 1000);
+  };
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -374,7 +393,9 @@ export default function EnhancedTable({ rows }) {
                         )}
                       </TableCell>
                       <TableCell align="right">
-                        <RiDeleteBin7Fill />
+                        <RiDeleteBin7Fill
+                          onClick={() => deleteThis(row.email)}
+                        />
                       </TableCell>
                       <TableCell align="right">
                         <AiOutlineEye />

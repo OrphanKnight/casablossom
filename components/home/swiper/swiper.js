@@ -32,12 +32,14 @@ export default function MainSwiper() {
           />
 
           <div className={style.swiper_slide_content}>
-            <div className={style.swiper_slide_title}>Slide 1</div>
+            <div className={style.swiper_slide_title}>Fresh Flowers</div>
 
             <div className={style.swiper_slide_text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              nemo saepe vero aliquid assumenda! Ipsa maxime sit reiciendis
-              velit odit aliquam,
+              CasaBlossom sources and sells fresh flowers for customers to
+              purchase either in-store or online. These flowers are carefully
+              chosen and arranged to create a stunning display that can brighten
+              up any space. They can be purchased as individual stems or in
+              bouquets.
             </div>
           </div>
         </SwiperSlide>
@@ -49,12 +51,13 @@ export default function MainSwiper() {
           />
 
           <div className={style.swiper_slide_content}>
-            <div className={style.swiper_slide_title}>Slide 1</div>
+            <div className={style.swiper_slide_title}>Floral Arrangements</div>
 
             <div className={style.swiper_slide_text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              nemo saepe vero aliquid assumenda! Ipsa maxime sit reiciendis
-              velit odit aliquam,
+              CasaBlossom creates beautiful and customized floral arrangements
+              for a variety of occasions such as weddings, birthdays, funerals,
+              and corporate events. These arrangements can be in the form of
+              bouquets, centerpieces, wreaths, corsages, boutonnieres, and more.
             </div>
           </div>
         </SwiperSlide>
@@ -66,12 +69,16 @@ export default function MainSwiper() {
           />
 
           <div className={style.swiper_slide_content}>
-            <div className={style.swiper_slide_title}>Slide 1</div>
+            <div className={style.swiper_slide_title}>
+              Gifts and Accessories
+            </div>
 
             <div className={style.swiper_slide_text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              nemo saepe vero aliquid assumenda! Ipsa maxime sit reiciendis
-              velit odit aliquam,
+              CasaBlossom offers a range of gift items and accessories that
+              complement their floral arrangements. These items can include
+              chocolates, balloons, teddy bears, vases, and greeting cards. The
+              shop may also offer gift baskets that combine flowers with other
+              gift items.
             </div>
           </div>
         </SwiperSlide>
@@ -83,12 +90,14 @@ export default function MainSwiper() {
           />
 
           <div className={style.swiper_slide_content}>
-            <div className={style.swiper_slide_title}>Slide 1</div>
+            <div className={style.swiper_slide_title}>Delivery and Set-Up</div>
 
             <div className={style.swiper_slide_text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              nemo saepe vero aliquid assumenda! Ipsa maxime sit reiciendis
-              velit odit aliquam,
+              CasaBlossom delivers and set-up services for their floral
+              arrangements. They can deliver to homes, offices, and event
+              venues, and will often set up the arrangements on-site to ensure
+              they look their best. This service is particularly useful for busy
+              individuals or those who are planning events.
             </div>
           </div>
         </SwiperSlide>

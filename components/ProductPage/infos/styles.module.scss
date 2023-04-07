@@ -57,12 +57,14 @@
       gap: 1rem;
     }
     &_size {
-      width: 45px;
-      height: 45px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: grid;
       place-items: center;
+      text-align: center;
       border: 1px solid #e6e6e6;
+      text-decoration: none;
       cursor: pointer;
       &:hover {
         background-image: linear-gradient(

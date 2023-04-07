@@ -8,8 +8,28 @@ import { TbEdit } from "react-icons/tb";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { useState } from "react";
+import axios from "axios";
 export default function ProductCard({ product }) {
   const [active, setActive] = useState(0);
+
+  const deleteSubProduct = async (productID, subProductId) => {
+    try {
+      const { data } = await axios.delete("/api/admin/product", {
+        data: { productID, subProductId },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };
+
+  const deleteThis = async (productID, subProductId) => {
+    deleteSubProduct(productID, subProductId);
+    setTimeout(function () {
+      window.location.reload(true);
+    }, 1000);
+  };
+
   return (
     <div className={styles.product}>
       <h1 className={styles.product__name}>{product.name}</h1>
@@ -55,7 +75,9 @@ export default function ProductCard({ product }) {
                   <AiOutlineEye />
                 </Link>
                 <Link href="">
-                  <RiDeleteBin2Line />
+                  <RiDeleteBin2Line
+                    onClick={() => deleteThis(product._id, p._id)}
+                  />
                 </Link>
               </div>
             </div>

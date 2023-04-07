@@ -2,10 +2,10 @@ export const sidebarData = [
   {
     heading: "My Account",
     links: [
-      {
-        name: "My Profile",
-        link: "/profile",
-      },
+      // {
+      //   name: "My Profile",
+      //   link: "/profile",
+      // },
       {
         name: "Addresses",
         link: "/profile/address",
@@ -15,7 +15,7 @@ export const sidebarData = [
         link: "/profile/payment",
       },
       {
-        name: "Account Security",
+        name: "Reset Password",
         link: "/profile/security",
       },
     ],
@@ -66,32 +66,32 @@ export const sidebarData = [
       },
     ],
   },
-  {
-    heading: "My Lists",
-    links: [
-      {
-        name: "Whishlist",
-        link: "/profile/wishlist",
-      },
-      {
-        name: "Recently Viewed",
-        link: "/profile/recent",
-      },
-    ],
-  },
-  {
-    heading: "Customer Service",
-    links: [
-      {
-        name: "My Message",
-        link: "/profile/messages",
-      },
-      {
-        name: "Service Records",
-        link: "/profile/services",
-      },
-    ],
-  },
+  // {
+  //   heading: "My Lists",
+  //   links: [
+  //     {
+  //       name: "Whishlist",
+  //       link: "/profile/wishlist",
+  //     },
+  //     {
+  //       name: "Recently Viewed",
+  //       link: "/profile/recent",
+  //     },
+  //   ],
+  // },
+  // {
+  //   heading: "Customer Service",
+  //   links: [
+  //     {
+  //       name: "My Message",
+  //       link: "/profile/messages",
+  //     },
+  //     {
+  //       name: "Service Records",
+  //       link: "/profile/services",
+  //     },
+  //   ],
+  // },
   {
     heading: "Other Services",
     links: [

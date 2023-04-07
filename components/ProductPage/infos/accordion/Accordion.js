@@ -80,13 +80,6 @@ export default function ControlledAccordions({ details }) {
         onChange={handleChange("panel2")}
         className={styles.accordian}
       >
-        <AccordionSummary
-          className={styles.accordian__summary}
-          aria-controls="panel1d-content"
-          id="panel1d-header"
-        >
-          Size & Fit
-        </AccordionSummary>
         <AccordionDetails>
           <div className={styles.infos__accordian_grid}></div>
         </AccordionDetails>

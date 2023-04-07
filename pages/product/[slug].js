@@ -7,8 +7,9 @@ import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
 import ProductCards from "@/components/ProductPage/productCards";
 import Infos from "@/components/ProductPage/infos";
+import { randomize } from "@/utils/arrays_utils";
 
-export default function product({ product }) {
+export default function product({ product, products }) {
   const [activeImg, setActiveImg] = useState("");
   return (
     <>
@@ -23,7 +24,11 @@ export default function product({ product }) {
           </div>
           <div className={styles.product__main}>
             <ProductCards images={product.images} activeImg={activeImg} />
-            <Infos product={product} setActiveImg={setActiveImg} />
+            <Infos
+              product={product}
+              setActiveImg={setActiveImg}
+              products={products}
+            />
           </div>
         </div>
       </div>
@@ -77,10 +82,19 @@ export async function getServerSideProps(context) {
     priceBefore: subProduct.sizes[size].price,
     quantity: subProduct.sizes[size].qty,
   };
+
+  const productDB = await Product.find({})
+    .populate({ path: "category", model: Category })
+    .sort({ updatedAt: -1 })
+    .lean();
+
+  const products = randomize(productDB);
   db.disconnectDb();
   return {
     props: {
       product: JSON.parse(JSON.stringify(newProduct)),
+
+      products: JSON.parse(JSON.stringify(products)),
     },
   };
 }

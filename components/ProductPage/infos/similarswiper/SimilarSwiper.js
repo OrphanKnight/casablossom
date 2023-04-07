@@ -9,7 +9,14 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper";
-export default function SimilarSwiper() {
+import { randomize } from "@/utils/arrays_utils";
+export default function SimilarSwiper({ products }) {
+  let randomProperty = [];
+  for (let i = 0; i < 12; i++) {
+    randomProperty.push(products[Math.floor(Math.random() * products.length)]);
+  }
+
+  console.log("Pro", randomProperty);
   return (
     <Swiper
       slidesPerView={4}
@@ -25,10 +32,10 @@ export default function SimilarSwiper() {
         },
       }}
     >
-      {similar_products.map((productImage) => (
+      {randomProperty.map((product) => (
         <SwiperSlide>
-          <Link href="/">
-            <img src={productImage} alt="" />
+          <Link href={`/product/${product.slug}?style=0`}>
+            <img src={product.subProducts[0].images[0].url} alt="" />
           </Link>
         </SwiperSlide>
       ))}

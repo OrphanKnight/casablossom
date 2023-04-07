@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showDialog } from "@/store/DialogSlice";
 import DialogModal from "@/components/dialogModal";
 
-export default function Infos({ product, setActiveImg }) {
+export default function Infos({ product, setActiveImg, products }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -141,7 +141,7 @@ export default function Infos({ product, setActiveImg }) {
           pieces available.
         </span>
 
-        <div className={styles.info_sizes}>
+        <div className={styles.info__sizes}>
           <h4>Select a Size : </h4>
           <div className={styles.infos__sizes_wrap}>
             {product.sizes.map((size, i) => (
@@ -214,10 +214,6 @@ export default function Infos({ product, setActiveImg }) {
             <RiShoppingBasket2Fill />
             <b>ADD TO BASKET</b>
           </button>
-          <button onClick={() => handleWishList()}>
-            <BsHeart />
-            WISHLIST
-          </button>
         </div>
         {error && <span className={styles.error}>{error}</span>}
         <>
@@ -225,7 +221,7 @@ export default function Infos({ product, setActiveImg }) {
             details={[product.description, ...product.details]}
           />
           <Socials />
-          <SimilarSwiper key="" />
+          <SimilarSwiper products={products} key="" />
         </>
       </div>
     </div>
