@@ -1,7 +1,7 @@
-import Layout from "../../../components/admin/layout";
+import Layout from "../../../components/admin/Layout/Layout";
 import db from "../../../utils/db";
 import User from "../../../models/User";
-import EnhancedTable from "../../../components/admin/users/table";
+import EnhancedTable from "../../../components/admin/Users/Table/EnhancedTableForUsers";
 
 export default function Users({ users }) {
   console.log(users);

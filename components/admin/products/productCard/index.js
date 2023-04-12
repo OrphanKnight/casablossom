@@ -10,7 +10,7 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import { useState } from "react";
 import axios from "axios";
 export default function ProductCard({ product }) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(false);
 
   const deleteSubProduct = async (productID, subProductId) => {
     try {
@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
   const deleteThis = async (productID, subProductId) => {
     deleteSubProduct(productID, subProductId);
     setTimeout(function () {
-      window.location.reload(true);
+      setActive(!update);
     }, 1000);
   };
 

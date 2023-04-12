@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import AdminInput from "../../inputs/adminInput";
 import { toast } from "react-toastify";
 import axios from "axios";
-export default function Create({ setCategories }) {
+export default function CreateCategory({ setCategories }) {
   const [name, setName] = useState("");
   const validate = Yup.object({
     name: Yup.string()

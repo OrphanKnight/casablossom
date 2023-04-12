@@ -1,5 +1,5 @@
-import AboutComponent from "@/components/about";
-import Flower from "@/components/about/flower";
+import AboutComponent from "@/components/about/AboutComponent";
+import Flower from "@/components/about/Flower";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import React from "react";

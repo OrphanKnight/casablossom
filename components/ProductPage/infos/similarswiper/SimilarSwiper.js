@@ -1,15 +1,13 @@
 import Link from "next/link";
-import { similar_products } from "../../../../data/products";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Navigation } from "swiper";
 
 // import required modules
-import { Navigation } from "swiper";
-import { randomize } from "@/utils/arrays_utils";
 export default function SimilarSwiper({ products }) {
   let randomProperty = [];
   for (let i = 0; i < 12; i++) {

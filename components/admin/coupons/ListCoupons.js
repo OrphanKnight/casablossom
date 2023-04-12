@@ -1,4 +1,4 @@
-import ListItem from "./ListItem";
+import ListItem from "./ListItemOfCoupons";
 import styles from "./styles.module.scss";
 
 export default function List({ coupons, setCoupons }) {

@@ -1,4 +1,4 @@
-import Layout from "../../../components/admin/layout";
+import Layout from "../../../components/admin/Layout/Layout";
 import CollapsibleTable from "../../../components/admin/orders/table";
 import db from "../../../utils/db";
 import Order from "../../../models/Order";

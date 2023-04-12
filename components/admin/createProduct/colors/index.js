@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { ColorExtractor } from "react-color-extractor";
 import { TbArrowUpRightCircle } from "react-icons/tb";
-export default function Colors({
+export default function CreateProductColors({
   product,
   setProduct,
   name,

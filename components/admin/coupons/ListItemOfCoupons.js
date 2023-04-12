@@ -109,14 +109,14 @@ export default function ListItem({ coupon, setCoupons }) {
         </div>
       )}
       <div className={styles.list__item_actions}>
-        {!open && (
+        {/* {!open && (
           <AiTwotoneEdit
             onClick={() => {
               setOpen((prev) => !prev);
               input.current.focus();
             }}
           />
-        )}
+        )} */}
         <AiFillDelete onClick={() => handleRemove(coupon._id)} />
       </div>
     </li>

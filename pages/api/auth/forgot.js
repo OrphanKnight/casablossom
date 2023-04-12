@@ -15,7 +15,7 @@ handler.post(async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "This email does not exist." });
+      return res.status(404).json({ message: "This email does not exist." });
     }
     const user_id = createResetToken({
       id: user._id.toString(),

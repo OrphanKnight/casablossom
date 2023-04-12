@@ -1,4 +1,4 @@
-import CartHeader from "@/components/cart/cartHeader";
+import CartHeader from "@/components/cart/cartHeader/CartHeader";
 import Empty from "@/components/cart/empty";
 import Header from "@/components/cart/header";
 import Product from "@/components/cart/product";
@@ -13,31 +13,39 @@ import { saveCart } from "@/requests/user";
 export default function Cart({ country }) {
   const Router = useRouter();
   const { data: session } = useSession();
-  const [selected, setSelected] = useState([]);
   const { cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const [shippingFee, setShippingFee] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const selectedItems = cart.cartItems.filter((item) => item.selected);
   useEffect(() => {
     setShippingFee(
-      selected.reduce((a, c) => a + Number(c.shipping), 0).toFixed(2)
+      selectedItems.reduce((a, c) => a + Number(c.shipping), 0).toFixed(2)
     );
-    setSubtotal(selected.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2));
+    setSubtotal(
+      selectedItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)
+    );
     setTotal(
       (
-        selected.reduce((a, c) => a + c.price * c.qty, 0) + Number(shippingFee)
+        selectedItems.reduce((a, c) => a + c.price * c.qty, 0) +
+        Number(shippingFee)
       ).toFixed(2)
     );
-  }, [selected]);
+  }, [cart.cartItems, shippingFee]);
 
   const saveCartToDbHandler = async () => {
     if (session) {
-      const res = saveCart(selected);
-      Router.push("/checkout");
+      const res = saveCart(selectedItems);
+      setTimeout(function () {
+        Router.push("/checkout");
+      }, 1000);
     } else {
       signIn();
     }
+  };
+  const handleSelect = (itemId) => {
+    dispatch(toggleSelect(itemId));
   };
   return (
     <>
@@ -45,18 +53,13 @@ export default function Cart({ country }) {
       <div className={styles.cart}>
         {cart.cartItems.length > 0 ? (
           <div className={styles.cart__container}>
-            <CartHeader
-              cartItems={cart.cartItems}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <CartHeader cartItems={cart.cartItems} setSelected={handleSelect} />
             <div className={styles.cart__products}>
               {cart.cartItems.map((product) => (
                 <Product
                   product={product}
                   key={product._uid}
-                  selected={selected}
-                  setSelected={setSelected}
+                  setSelected={handleSelect}
                 />
               ))}
             </div>
@@ -64,7 +67,7 @@ export default function Cart({ country }) {
               subtotal={subtotal}
               shippingFee={shippingFee}
               total={total}
-              selected={selected}
+              selected={cart.cartItems.filter((item) => item.selected)}
               saveCartToDbHandler={saveCartToDbHandler}
             />
           </div>

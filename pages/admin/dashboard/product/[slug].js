@@ -12,19 +12,20 @@ import { Form, Formik } from "formik";
 import SingularSelect from "../../../../components/selects/SingularSelect";
 import MultipleSelect from "../../../../components/selects/MultipleSelect";
 import AdminInput from "../../../../components/inputs/adminInput";
-import DialogModal from "../../../../components/dialogModal";
+import DialogModal from "./../../../../components/DialogModal/index";
+
 import { useDispatch } from "react-redux";
 import { showDialog } from "../../../../store/DialogSlice";
-import Images from "../../../../components/admin/createProduct/images";
+import Images from "./../../../../components/admin/createProduct/images/index";
 import Colors from "../../../../components/admin/createProduct/colors";
-import Style from "../../../../components/admin/createProduct/style";
+import Style from "./../../../../components/admin/createProduct/style/index";
 import Sizes from "../../../../components/admin/createProduct/clickToAdd/Sizes";
 import Details from "../../../../components/admin/createProduct/clickToAdd/Details";
 import Questions from "../../../../components/admin/createProduct/clickToAdd/Questions";
 import { validateCreateProduct } from "../../../../utils/validation";
 import dataURItoBlob from "../../../../utils/dataURItoBlob";
 import { uploadImages } from "../../../../requests/upload";
-import Layout from "../../../../components/admin/layout";
+import Layout from "../../../../components/admin/Layout/Layout";
 
 export default function Edit({ product, parents, categories }) {
   console.log("Colors", product.colors);

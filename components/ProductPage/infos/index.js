@@ -12,8 +12,7 @@ import ControlledAccordions from "./accordion/Accordion.js";
 import axios from "axios";
 import { addToCart, updateCart } from "@/store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { showDialog } from "@/store/DialogSlice";
-import DialogModal from "@/components/dialogModal";
+import DialogModal from "@/components/DialogModal";
 
 export default function Infos({ product, setActiveImg, products }) {
   const router = useRouter();
@@ -43,6 +42,7 @@ export default function Infos({ product, setActiveImg, products }) {
       console.log(_uid);
       let exist = cart?.cartItems?.find((p) => p._uid === _uid);
       if (exist) {
+        console.log("It Exists");
         let newCart = cart.cartItems.map((p) => {
           if (p._uid == exist._uid) {
             return { ...p, qty: qty };
@@ -51,6 +51,7 @@ export default function Infos({ product, setActiveImg, products }) {
         });
         dispatch(updateCart(newCart));
       } else {
+        console.log("add to cart");
         dispatch(
           addToCart({
             ...data,
@@ -61,41 +62,6 @@ export default function Infos({ product, setActiveImg, products }) {
           })
         );
       }
-    }
-  };
-  //==================================================
-  const handleWishList = async () => {
-    try {
-      if (!session) {
-        return signIn();
-      }
-      const { data } = await axios.put("/api/user/wishlist", {
-        product_id: product._id,
-        style: product.style,
-      });
-      dispatch(
-        showDialog({
-          header: "Product Added to Whishlist Successfully",
-          msgs: [
-            {
-              msg: data.message,
-              type: "success",
-            },
-          ],
-        })
-      );
-    } catch (error) {
-      dispatch(
-        showDialog({
-          header: "Whishlist Error",
-          msgs: [
-            {
-              msg: error.response.data.message,
-              type: "error",
-            },
-          ],
-        })
-      );
     }
   };
   //=========================================================
@@ -180,11 +146,15 @@ export default function Infos({ product, setActiveImg, products }) {
         </div>
 
         <div className={styles.infos__qty}>
-          <button onClick={() => qty > 1 && setQty((current) => current - 1)}>
+          <button
+            data-testid="minus-button"
+            onClick={() => qty > 1 && setQty((current) => current - 1)}
+          >
             <TbMinus />
           </button>
-          <span>{qty}</span>
+          <span data-testid="qty-display">{qty}</span>
           <button
+            data-testid="plus-button"
             onClick={() =>
               qty < product.quantity && setQty((current) => current + 1)
             }

@@ -1,9 +1,9 @@
-import Layout from "../../../components/admin/layout";
+import Layout from "../../../components/admin/Layout/Layout";
 import db from "../../../utils/db";
 import Category from "../../../models/Category";
 import { useState } from "react";
-import Create from "../../../components/admin/categories/Create";
-import List from "../../../components/admin/categories/List";
+import Create from "../../../components/admin/Categories/CreateCategory";
+import List from "../../../components/admin/Categories/ListCategories";
 export default function Categories({ categories }) {
   const [data, setData] = useState(categories);
   console.log(data);

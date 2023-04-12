@@ -1,4 +1,4 @@
-import Layout from "../../../components/admin/layout";
+import Layout from "../../../components/admin/Layout/Layout";
 import db from "../../../utils/db";
 import Category from "../../../models/Category";
 import SubCategory from "../../../models/SubCategory";

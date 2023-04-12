@@ -6,8 +6,8 @@ import db from "@/utils/db";
 import User from "@/models/User";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useEffect, useReducer } from "react";
-import StripePayment from "@/components/stripePayment";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -54,7 +54,7 @@ export default function Orders({
         value: "pending",
       });
     }
-  }, [Orders]);
+  }, [orderData]);
 
   function createOrderHandler(data, actions) {
     return actions.order
@@ -80,8 +80,11 @@ export default function Orders({
           order_id: orderData._id,
         });
         dispatch({ type: "PAY_SUCCESS", payload: data });
+        setTimeout(function () {
+          window.location.reload(true);
+        }, 1000);
       } catch (error) {
-        dispatch({ type: "PAY_ERROR", payload: error });
+        dispatch({ type: "PAY_FAIL", payload: error });
       }
     });
   }
@@ -145,6 +148,12 @@ export default function Orders({
                     </div>
                     <div className={styles.product__infos_priceQty}>
                       ${product.price} x {product.qty}
+                    </div>
+                    <div>
+                      {" "}
+                      {product.customize
+                        ? `Requested: ${product.customize}`
+                        : " "}
                     </div>
                     <div className={styles.product__infos_total}>
                       ${product.price * product.qty}
@@ -256,16 +265,6 @@ export default function Orders({
                     )}
                   </div>
                 )}
-                {orderData.paymentMethod == "credit_card" && (
-                  <StripePayment
-                    total={orderData.total}
-                    order_id={orderData._id}
-                    stripe_public_key={stripe_public_key}
-                  />
-                )}
-                {orderData.paymentMethod == "cash" && (
-                  <div className={styles.cash}>cash</div>
-                )}
               </div>
             )}
           </div>
@@ -283,7 +282,6 @@ export async function getServerSideProps(context) {
     .populate({ path: "user", model: User })
     .lean();
   let paypal_client_id = process.env.REACT_APP_PAYPAL_CLIENT_ID;
-  let stripe_public_key = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
   db.disconnectDb();
   return {
     props: {

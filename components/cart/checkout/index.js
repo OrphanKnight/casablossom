@@ -1,12 +1,14 @@
+import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 
 export default function Checkout({
   subtotal,
   shippingFee,
   total,
-  selected,
   saveCartToDbHandler,
 }) {
+  const { cart } = useSelector((state) => ({ ...state }));
+  const selected = cart.cartItems.filter((item) => item.selected);
   return (
     <div className={`${styles.cart__checkout} ${styles.card}`}>
       <h2>Order Summary</h2>

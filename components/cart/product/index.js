@@ -5,14 +5,17 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../store/cartSlice";
 import { useState, useEffect } from "react";
-export default function Product({ product, selected, setSelected }) {
+import { toggleSelect } from "@/store/cartSlice";
+export default function Product({ product }) {
   const { cart } = useSelector((state) => ({ ...state }));
+  const selected = cart.cartItems.filter((item) => item.selected);
   const [active, setActive] = useState();
 
   useEffect(() => {
-    const check = selected?.find((p) => p._uid == product._uid);
-    setActive(check);
-  }, [selected]);
+    const check = cart.cartItems.find((p) => p._uid == product._uid);
+    setActive(check?.selected);
+  }, [cart.cartItems]);
+
   const dispatch = useDispatch();
   const updateQty = (type) => {
     let newCart = cart.cartItems.map((p) => {
@@ -26,19 +29,18 @@ export default function Product({ product, selected, setSelected }) {
     });
     dispatch(updateCart(newCart));
   };
+
   const removeProduct = (id) => {
     let newCart = cart.cartItems.filter((p) => {
       return p._uid != id;
     });
     dispatch(updateCart(newCart));
   };
-  const handleSelect = () => {
-    if (active) {
-      setSelected(selected.filter((p) => p._uid !== product._uid));
-    } else {
-      setSelected([...selected, product]);
-    }
+
+  const handleSelect = (id) => {
+    dispatch(toggleSelect(product._uid));
   };
+
   return (
     <div className={`${styles.card} ${styles.product}`}>
       {product.quantity < 1 && <div className={styles.blur}></div>}
@@ -52,7 +54,7 @@ export default function Product({ product, selected, setSelected }) {
       <div className={styles.product__image}>
         <div
           className={`${styles.checkbox} ${active ? styles.active : ""}`}
-          onClick={() => handleSelect()}
+          onClick={() => handleSelect(product._uid)}
         ></div>
         <img src={product.images[0].url} alt="" />
         <div className={styles.col}>

@@ -6,7 +6,9 @@ import ShippingInput from "../../inputs/shippingInput";
 import { applyCoupon } from "../../../requests/user";
 import axios from "axios";
 import Router from "next/router";
-export default function Summary({
+import { useDispatch } from "react-redux";
+import { removeSelectedItems } from "@/store/cartSlice";
+export default function CheckoutSummary({
   totalAfterDiscount,
   setTotalAfterDiscount,
   user,
@@ -14,6 +16,8 @@ export default function Summary({
   paymentMethod,
   selectedAddress,
 }) {
+  const dispatch = useDispatch();
+
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState("");
   const [error, setError] = useState("");
@@ -33,13 +37,17 @@ export default function Summary({
   };
   const placeOrderHandler = async () => {
     try {
+      // Check if the paymentMethod is empty, i.e., not selected
       if (paymentMethod == "") {
         setOrder_Error("Please choose a payment method.");
         return;
+        // Check if selectedAddress is null or undefined, i.e., not selected
       } else if (!selectedAddress) {
         setOrder_Error("Please choose a shipping address.");
         return;
       }
+      // Send a POST request to the server to create an order
+      // Pass the necessary data as the payload of the request
       const { data } = await axios.post("/api/order/create", {
         products: cart.products,
         shippingAddress: selectedAddress,
@@ -48,6 +56,11 @@ export default function Summary({
         totalBeforeDiscount: cart.cartTotal,
         couponApplied: coupon,
       });
+
+      // Dispatch the removeSelectedItems action to remove the selected items from the cart
+      dispatch(removeSelectedItems());
+
+      // If the order is created successfully, navigate to the order details page
       Router.push(`/order/${data.order_id}`);
     } catch (error) {
       setOrder_Error(error.response.data.message);

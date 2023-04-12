@@ -11,33 +11,25 @@ import {
 } from "../utils/arrays_utils";
 import Link from "next/link";
 import ProductCard from "@/components/productCard";
-import CategoryFilter from "../components/browse/categoryFilter";
+import CategoryFilter from "../components/browse/CategoryFilter/CategoryFilter";
 import SizesFilter from "../components/browse/sizesFilter";
-import ColorsFilter from "../components/browse/colorsFilter";
-import BrandsFilter from "../components/browse/brandsFilter";
-import StylesFilter from "../components/browse/stylesFilter";
-import PatternsFilter from "../components/browse/patternsFilter";
-import MaterialsFilter from "../components/browse/materialsFilter";
-import GenderFilter from "../components/browse/genderFilter";
-import HeadingFilters from "../components/browse/headingFilters";
+import ColorsFilter from "../components/browse/colorsFilter/ColorsFilter";
+import HeadingFilters from "../components/browse/headingFilters/HeadingFilters";
 import { useRouter } from "next/router";
 import { Pagination } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+
 export default function Browse({
   categories,
   subCategories,
   products,
   sizes,
   colors,
-  brands,
-  stylesData,
-  patterns,
-  materials,
   paginationCount,
-  country,
 }) {
   const router = useRouter();
+
+  // Function to update URL with filter parameters and apply them
   const filter = ({
     search,
     category,
@@ -54,6 +46,7 @@ export default function Browse({
     sort,
     page,
   }) => {
+    // Update URL query parameters
     const path = router.pathname;
     const { query } = router;
     if (search) query.search = search;
@@ -75,6 +68,8 @@ export default function Browse({
       query: query,
     });
   };
+
+  // searchHandler: updates the search query parameter in the URL based on the search input value.
   const searchHandler = (search) => {
     if (search == "") {
       filter({ search: {} });
@@ -82,34 +77,23 @@ export default function Browse({
       filter({ search });
     }
   };
+
+  // categoryHandler: updates the category query parameter in the URL based on the selected category.
   const categoryHandler = (category) => {
     filter({ category });
   };
-  const brandHandler = (brand) => {
-    filter({ brand });
-  };
-  const styleHandler = (style) => {
-    filter({ style });
-  };
+
+  // sizeHandler: updates the size query parameter in the URL based on the selected size.
   const sizeHandler = (size) => {
     filter({ size });
   };
+
+  // colorHandler: updates the color query parameter in the URL based on the selected color.
   const colorHandler = (color) => {
     filter({ color });
   };
-  const patternHandler = (pattern) => {
-    filter({ pattern });
-  };
-  const materialHandler = (material) => {
-    filter({ material });
-  };
-  const genderHandler = (gender) => {
-    if (gender == "Unisex") {
-      filter({ gender: {} });
-    } else {
-      filter({ gender });
-    }
-  };
+
+  // priceHandler: updates the price query parameter in the URL based on the selected minimum or maximum price.
   const priceHandler = (price, type) => {
     let priceQuery = router.query.price?.split("_") || "";
     let min = priceQuery[0] || "";
@@ -122,15 +106,18 @@ export default function Browse({
     }
     filter({ price: newPrice });
   };
+
+  // multiPriceHandler: updates the price query parameter in the URL based on the selected minimum and maximum price range.
   const multiPriceHandler = (min, max) => {
     filter({ price: `${min}_${max}` });
   };
+
+  // shippingHandler: updates the shipping query parameter in the URL based on the selected shipping option.
   const shippingHandler = (shipping) => {
     filter({ shipping });
   };
-  const ratingHandler = (rating) => {
-    filter({ rating });
-  };
+
+  // sortHandler: updates the sort query parameter in the URL based on the selected sorting method.
   const sortHandler = (sort) => {
     if (sort == "") {
       filter({ sort: {} });
@@ -138,16 +125,19 @@ export default function Browse({
       filter({ sort });
     }
   };
+  // pageHandler: updates the page query parameter in the URL based on the selected pagination page number.
   const pageHandler = (e, page) => {
     filter({ page });
   };
   //----------
+  // Utility functions for managing the query parameters
   function checkChecked(queryName, value) {
     if (router.query[queryName]?.search(value) !== -1) {
       return true;
     }
     return false;
   }
+  // Replace or add the value of the query parameter
   function replaceQuery(queryName, value) {
     const existedQuery = router.query[queryName];
     const valueCheck = existedQuery?.search(value);
@@ -178,10 +168,16 @@ export default function Browse({
     };
   }
   //---------------------------------
+  // useState hooks for managing the scrollY and height
   const [scrollY, setScrollY] = useState(0);
   const [height, setHeight] = useState(0);
+
+  // useRef hooks for referencing DOM elements
   const headerRef = useRef(null);
   const el = useRef(null);
+
+  // useEffect hook to handle scroll event and update the scrollY and height state
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -237,37 +233,12 @@ export default function Browse({
                 colorHandler={colorHandler}
                 replaceQuery={replaceQuery}
               />
-              {/* <BrandsFilter
-                brands={brands}
-                brandHandler={brandHandler}
-                replaceQuery={replaceQuery}
-              />
-              <StylesFilter
-                data={stylesData}
-                styleHandler={styleHandler}
-                replaceQuery={replaceQuery}
-              />
-              <PatternsFilter
-                patterns={patterns}
-                patternHandler={patternHandler}
-                replaceQuery={replaceQuery}
-              />
-              <MaterialsFilter
-                materials={materials}
-                materialHandler={materialHandler}
-                replaceQuery={replaceQuery}
-              />
-              <GenderFilter
-                genderHandler={genderHandler}
-                replaceQuery={replaceQuery}
-              /> */}
             </div>
             <div className={styles.browse__store_products_wrap}>
               <HeadingFilters
                 priceHandler={priceHandler}
                 multiPriceHandler={multiPriceHandler}
                 shippingHandler={shippingHandler}
-                ratingHandler={ratingHandler}
                 replaceQuery={replaceQuery}
                 sortHandler={sortHandler}
               />
@@ -307,6 +278,7 @@ export async function getServerSideProps(ctx) {
   const page = query.page || 1;
 
   //-----------
+  // Create search regex for various filters
   const brandQuery = query.brand?.split("_") || "";
   const brandRegex = `^${brandQuery[0]}`;
   const brandSearchRegex = createRegex(brandQuery, brandRegex);
@@ -334,6 +306,8 @@ export async function getServerSideProps(ctx) {
   const colorRegex = `^${colorQuery[0]}`;
   const colorSearchRegex = createRegex(colorQuery, colorRegex);
   //-------------------------------------------------->
+
+  // Create query objects for filters
   const search =
     searchQuery && searchQuery !== ""
       ? {
@@ -418,12 +392,14 @@ export async function getServerSideProps(ctx) {
           },
         }
       : {};
+
   const shipping =
     shippingQuery && shippingQuery == "0"
       ? {
           shipping: 0,
         }
       : {};
+
   const rating =
     ratingQuery && ratingQuery !== ""
       ? {
@@ -432,6 +408,7 @@ export async function getServerSideProps(ctx) {
           },
         }
       : {};
+
   const sort =
     sortQuery == ""
       ? {}
@@ -450,6 +427,7 @@ export async function getServerSideProps(ctx) {
       : {};
   //-------------------------------------------------->
   //-------------------------------------------------->
+  // Create a function to generate a regex string for queries
   function createRegex(data, styleRegex) {
     if (data.length > 1) {
       for (var i = 1; i < data.length; i++) {
@@ -458,15 +436,8 @@ export async function getServerSideProps(ctx) {
     }
     return styleRegex;
   }
-  let data = await axios
-    .get("https://api.ipregistry.co/?key=r208izz0q0icseks")
-    .then((res) => {
-      return res.data.location.country;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   //-------------------------------------------------->
+  // Connect to the database and retrieve product data
   db.connectDb();
   let productsDb = await Product.find({
     ...search,
@@ -488,6 +459,8 @@ export async function getServerSideProps(ctx) {
     .lean();
   let products =
     sortQuery && sortQuery !== "" ? productsDb : randomize(productsDb);
+
+  // Retrieve additional data such as categories, subcategories, and other filter options
   let categories = await Category.find().lean();
   let subCategories = await SubCategory.find()
     .populate({
@@ -507,9 +480,8 @@ export async function getServerSideProps(ctx) {
   let patternsDb = filterArray(details, "Pattern Type");
   let materialsDb = filterArray(details, "Material");
   let styles = removeDuplicates(stylesDb);
-  let patterns = removeDuplicates(patternsDb);
-  let materials = removeDuplicates(materialsDb);
-  let brands = removeDuplicates(brandsDb);
+
+  // Calculate the total number of products that match the filters
   let totalProducts = await Product.countDocuments({
     ...search,
     ...category,
@@ -531,15 +503,8 @@ export async function getServerSideProps(ctx) {
       products: JSON.parse(JSON.stringify(products)),
       sizes,
       colors,
-      brands,
       stylesData: styles,
-      patterns,
-      materials,
       paginationCount: Math.ceil(totalProducts / pageSize),
-      country: {
-        name: "USA",
-        flag: "hthttps://icons8.com/icon/UJSjBk_UUxeL/usatps://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
-      },
     },
   };
 }

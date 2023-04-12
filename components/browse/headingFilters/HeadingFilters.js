@@ -11,7 +11,6 @@ export default function HeadingFilters({
   multiPriceHandler,
   shippingHandler,
   replaceQuery,
-  ratingHandler,
   sortHandler,
 }) {
   const router = useRouter();
@@ -53,6 +52,7 @@ export default function HeadingFilters({
             <span style={{ height: "10%" }}></span>
           </button>
         </Tooltip>
+
         <Tooltip
           title={<h2>Check out products between 10$ and 50$</h2>}
           placement="top"
@@ -63,6 +63,7 @@ export default function HeadingFilters({
             <span style={{ height: "25%" }}></span>
           </button>
         </Tooltip>
+
         <Tooltip
           title={<h2>Check out products between 50$ and 100$</h2>}
           placement="top"
@@ -73,6 +74,7 @@ export default function HeadingFilters({
             <span style={{ height: "50%" }}></span>
           </button>
         </Tooltip>
+
         <Tooltip
           title={<h2>Check out products between 100$ and 500$</h2>}
           placement="top"
@@ -83,6 +85,7 @@ export default function HeadingFilters({
             <span style={{ height: "75%" }}></span>
           </button>
         </Tooltip>
+
         <Tooltip
           title={<h2>Check out products for more than 500$</h2>}
           placement="top"
@@ -94,6 +97,7 @@ export default function HeadingFilters({
           </button>
         </Tooltip>
       </div>
+
       <div
         className={styles.filters__shipping}
         onClick={() => shippingHandler(check.result)}
@@ -126,18 +130,23 @@ export default function HeadingFilters({
           </button>
           <ul
             style={{
+              // If "show" is true, set the scale of the <ul> element to 1 in both the X and Y directions, otherwise set it to 0 in the Y direction (so it disappears)
               transform: `${show ? "scale3d(1,1,1)" : "scale3d(1,0,1)"}`,
             }}
           >
+            {/* Map through each sorting option and create an <li> element with an <a> element inside */}
             {sortingOptions.map((option, i) => (
               <li key={i} onClick={() => sortHandler(option.value)}>
                 <a>
+                  {/* If this option is currently selected, display its name in bold */}
                   {sortQuery == option.value ? (
                     <b>{option.name}</b>
                   ) : (
                     option.name
-                  )}{" "}
+                  )}
+                  {/* If this option is currently selected, display a checkmark icon */}
                   {sortQuery == option.value ? <BsCheckLg /> : ""}
+                  {/* If this option is not currently selected, display a checkmark icon inside a div */}
                   {sortQuery !== option.value ? (
                     <div className={styles.check}>
                       <BsCheckLg />

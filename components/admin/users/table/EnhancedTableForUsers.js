@@ -23,8 +23,11 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 import { RiDeleteBin7Fill } from "react-icons/ri";
-import { AiOutlineEye } from "react-icons/ai";
+import { FaPaperPlane } from "react-icons/fa";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useState } from "react";
+
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -109,6 +112,7 @@ function EnhancedTableHead(props) {
     rowCount,
     onRequestSort,
   } = props;
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -220,13 +224,17 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable({ rows }) {
+export default function EnhancedTableForUsers({ rows }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [loading, setLoading] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [active, setActive] = useState(false);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -280,21 +288,32 @@ export default function EnhancedTable({ rows }) {
 
   const deleteUser = async (email) => {
     try {
-      const { data } = await axios.delete("/api/admin/users", {
+      const { data } = await axios.delete("/api/admin/user", {
         data: { email },
       });
+      toast.success("User has been deleted");
       return data;
-      window.location.reload(true);
     } catch (error) {
+      toast.error(error.response.data.message);
       return error.response.data.message;
     }
   };
 
+  const forgotHandler = async (email) => {
+    setLoading(true);
+    const { data } = await axios.post("/api/auth/forgot", {
+      email,
+    });
+    setError("");
+    toast.success(JSON.stringify(email) + " has been sent");
+    setSuccess(data.message);
+    setLoading(false);
+    return data;
+  };
+
   const deleteThis = async (email) => {
     deleteUser(email);
-    setTimeout(function () {
-      window.location.reload(true);
-    }, 1000);
+    setActive(!active);
   };
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -398,7 +417,9 @@ export default function EnhancedTable({ rows }) {
                         />
                       </TableCell>
                       <TableCell align="right">
-                        <AiOutlineEye />
+                        <FaPaperPlane
+                          onClick={() => forgotHandler(row.email)}
+                        />
                       </TableCell>
                     </TableRow>
                   );

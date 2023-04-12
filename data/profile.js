@@ -8,7 +8,7 @@ export const sidebarData = [
       // },
       {
         name: "Addresses",
-        link: "/profile/address",
+        link: "/profile/UserProfileAddresses",
       },
       {
         name: "My Payment Options",
@@ -25,43 +25,43 @@ export const sidebarData = [
     links: [
       {
         name: "All Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "",
       },
       {
         name: "Paid Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "paid",
       },
       {
         name: "Unpaid Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "unpaid",
       },
 
       {
         name: "Processing Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "Processing",
       },
       {
         name: "Unprocessed Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "",
       },
       {
         name: "Dispatched Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "Dispatched",
       },
       {
         name: "Delievered Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "Completed",
       },
       {
         name: "Cancelled Orders",
-        link: "/profile/orders",
+        link: "/profile/UserProfileOrders",
         filter: "Cancelled",
       },
     ],

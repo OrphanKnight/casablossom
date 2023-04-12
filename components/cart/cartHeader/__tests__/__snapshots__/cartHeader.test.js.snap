@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartHeader renders CartHeader component 1`] = `
+<div>
+  <div
+    class="cart__header card"
+  >
+    <h1>
+      Item Summary(
+      0
+      )
+    </h1>
+    <div
+      class="flex"
+    >
+      <div
+        class="checkbox active"
+        data-testid="checkbox"
+      />
+      <span>
+        Select all items
+      </span>
+    </div>
+  </div>
+</div>
+`;

@@ -31,13 +31,15 @@ export default function UserMenu({ session }) {
       )}
       <ul>
         <li>
-          <Link href="/profile/address">Profile</Link>
+          <Link href="/profile/UserProfileAddresses">Profile</Link>
         </li>
         <li>
-          <Link href="/profile/orders">My Orders</Link>
+          <Link href="/profile/UserProfileOrders?tab=1&q=all-orders__">
+            My Orders
+          </Link>
         </li>
         <li>
-          <Link href="/profile/address">Address</Link>
+          <Link href="/profile/UserProfileAddresses">Address</Link>
         </li>
       </ul>
     </div>

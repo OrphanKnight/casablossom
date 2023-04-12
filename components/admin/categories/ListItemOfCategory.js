@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
-export default function ListItem({ category, setCategories }) {
+export default function ListItemOfCategory({ category, setCategories }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const input = useRef(null);

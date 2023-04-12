@@ -5,10 +5,10 @@ import User from "../models/User";
 import Cart from "../models/Cart";
 import db from "../utils/db";
 import Header from "../components/cart/header";
-import Shipping from "../components/checkout/shipping";
-import Products from "../components/checkout/products";
+import Shipping from "../components/checkout/shipping/CheckoutShipping";
+import Products from "../components/checkout/products/CheckoutProducts";
 import Payment from "../components/checkout/payment";
-import Summary from "../components/checkout/summary";
+import Summary from "../components/checkout/summary/CartSummary";
 export default function CheckOut({ cart, user }) {
   const [addresses, setAddresses] = useState(user?.address || []);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -58,7 +58,6 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const user = await User.findById(session.user.id);
   const cart = await Cart.findOne({ user: user._id });
-  console.log(cart);
   db.disconnectDb();
   if (!cart) {
     return {

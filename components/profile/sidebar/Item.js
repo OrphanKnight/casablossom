@@ -21,7 +21,7 @@ export default function Item({ item, visible, index }) {
         <ul>
           {item.links.map((link, i) => (
             <>
-              {link.link.startsWith("/profile/orders") ? (
+              {link.link.startsWith("/profile/UserProfileOrders") ? (
                 <li
                   className={
                     (router.query.q?.split("__")[0] || "") ==

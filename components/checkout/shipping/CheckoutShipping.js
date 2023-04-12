@@ -29,7 +29,12 @@ const initialValues = {
   address2: "",
   country: "",
 };
-export default function Shipping({ user, addresses, setAddresses, profile }) {
+export default function CheckoutShipping({
+  user,
+  addresses,
+  setAddresses,
+  profile,
+}) {
   const [shipping, setShipping] = useState(initialValues);
   const [visible, setVisible] = useState(user?.address.length ? false : true);
   const {

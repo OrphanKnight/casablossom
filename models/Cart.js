@@ -30,6 +30,7 @@ const cartSchema = new mongoose.Schema(
           image: String,
         },
         price: Number,
+        selected: Boolean,
       },
     ],
     cartTotal: Number,

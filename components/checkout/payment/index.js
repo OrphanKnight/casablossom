@@ -1,7 +1,11 @@
 import { paymentMethods } from "@/data/paymentMethods";
 import styles from "./styles.module.scss";
 
-export default function Payment({ paymentMethod, setPaymentMethod, profile }) {
+export default function CheckoutPayment({
+  paymentMethod,
+  setPaymentMethod,
+  profile,
+}) {
   return (
     <div className={styles.payment}>
       {!profile && (

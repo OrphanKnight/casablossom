@@ -1,9 +1,9 @@
-import Layout from "../../../components/admin/layout";
+import Layout from "../../../components/admin/Layout/Layout";
 import db from "../../../utils/db";
 import Coupon from "../../../models/Coupon";
 import { useState } from "react";
-import Create from "../../../components/admin/coupons/Create";
-import List from "../../../components/admin/coupons/List";
+import Create from "../../../components/admin/Coupons/CreateCoupons";
+import List from "../../../components/admin/Coupons/ListCoupons";
 export default function Coupons({ coupons }) {
   const [data, setData] = useState(coupons);
   return (

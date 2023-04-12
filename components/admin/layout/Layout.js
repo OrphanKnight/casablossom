@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import Sidebar from "./sidebar";
 import { useSelector } from "react-redux";
-import DialogModal from "@/components/dialogModal";
+import DialogModal from "@/components/DialogModal";
 export default function Layout({ children }) {
   const { expandSidebar } = useSelector((state) => ({ ...state }));
   const showSidebar = expandSidebar.expandSidebar;

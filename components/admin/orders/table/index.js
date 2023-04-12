@@ -14,10 +14,34 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import styles from "./styles.module.scss";
+import { toast } from "react-toastify";
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [update, refresh] = React.useState(false);
+  async function updateOrderStatus(orderId, newStatus) {
+    try {
+      const response = await fetch(`/api/order/${orderId}/order`, {
+        method: "PATCH", // Change this line from 'PUT' to 'PATCH'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      const data = await response.json();
+      toast.success("Status has been updated to " + JSON.stringify(newStatus));
+      refresh(!update);
+      console.log(data);
+    } catch (error) {
+      toast.error("Error updating order status:", error);
+      console.error("Error updating order status:", error);
+    }
+  }
+  const handleChange = (e, row) => {
+    row.status = e.target.value;
+    updateOrderStatus(row._id, row.status);
+  };
 
   return (
     <React.Fragment>
@@ -57,23 +81,29 @@ function Row(props) {
           )}
         </TableCell>
         <TableCell align="right">
-          <span
+          <select
+            value={row.status}
+            onChange={(e) => handleChange(e, row)}
             className={
-              row.status == "Not Processed"
+              row.status === "Not Processed"
                 ? styles.not_processed
-                : row.status == "Processing"
+                : row.status === "Processing"
                 ? styles.processing
-                : row.status == "Dispatched"
+                : row.status === "Dispatched"
                 ? styles.dispatched
-                : row.status == "Cancelled"
+                : row.status === "Cancelled"
                 ? styles.cancelled
-                : row.status == "Completed"
+                : row.status === "Completed"
                 ? styles.completed
                 : ""
             }
           >
-            {row.status}
-          </span>
+            <option value="Not Processed">Not Processed</option>
+            <option value="Processing">Processing</option>
+            <option value="Dispatched">Dispatched</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Completed">Completed</option>
+          </select>
         </TableCell>
         <TableCell align="right">{row.couponApplied || "-"}</TableCell>
         <TableCell align="right">
@@ -200,7 +230,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-export default function CollapsibleTable({ rows }) {
+export default function OrdersCollapsibleTable({ rows }) {
   return (
     <TableContainer component={Paper}>
       <Typography

@@ -31,18 +31,27 @@ handler.post(async (req, res) => {
 
 handler.delete(async (req, res) => {
   try {
-    const { id } = req.body;
+    const { email } = req.body;
     db.connectDb();
-    await User.findByIdAndRemove(id);
+    console.log("email: ", email);
+    // Find the user by email and remove them
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    await user.remove();
+
     db.disconnectDb();
     return res.json({
-      message: "User has been deleted successfuly",
+      message: "User has been deleted successfully",
       categories: await User.find({}).sort({ updatedAt: -1 }),
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 handler.put(async (req, res) => {
   try {
     const { id, name } = req.body;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import styles from "@/styles/signin.module.scss";
+import styles from "./../../styles/signin.module.scss";
 import styled from "styled-components";
 import Link from "next/link";
 

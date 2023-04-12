@@ -18,7 +18,6 @@ handler.post(async (req, res) => {
       throw new Error("User not found");
     }
     let existing_cart = await Cart.findOne({ user: user._id });
-    console.log(existing_cart);
     if (existing_cart) {
       await existing_cart.remove();
     }

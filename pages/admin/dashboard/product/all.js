@@ -1,4 +1,4 @@
-import Layout from "@/components/admin/layout";
+import Layout from "@/components/admin/Layout/Layout";
 import ProductCard from "@/components/admin/products/productCard";
 import Category from "@/models/Category";
 import Product from "@/models/Product";
