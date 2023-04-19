@@ -15,7 +15,7 @@ export default function SizesFilter({ sizes, sizeHandler }) {
         Sizes <span>{show ? <FaMinus /> : <BsPlusLg />}</span>
       </h3>
       {show && (
-        <div className={styles.filter__sizes}>
+        <div className={styles.filter__sizes} data-testid="sizes-container">
           {sizes.map((size, i) => (
             <div
               key={styles[i]}

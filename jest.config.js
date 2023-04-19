@@ -10,6 +10,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
   testPathIgnorePatterns: [
+    "/.next/",
     "/node_modules/",
     "./components/ProductPage/infos/similarswiper/SimilarSwiper",
   ],

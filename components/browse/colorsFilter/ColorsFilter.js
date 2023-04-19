@@ -12,7 +12,7 @@ export default function ColorsFilter({ colors, colorHandler, replaceQuery }) {
       The filter section header displaying "Colors" and a toggle icon 
       The icon changes based on the 'show' state
       */}
-      <h3>
+      <h3 onClick={() => setShow(!show)} data-testid="colors-header">
         Colors <span>{show ? <FaMinus /> : <BsPlusLg />}</span>
       </h3>
       {/* If 'show' is true, render the color filter buttons*/}
@@ -26,8 +26,10 @@ export default function ColorsFilter({ colors, colorHandler, replaceQuery }) {
             const check = replaceQuery("color", color);
             return (
               // Render a button with a key, a background color, and an optional 'activeFilterColor' class if active
+              //also used for testing
               <button
                 key={color[i]}
+                data-testid={`color-btn-${color}`} // Add this line
                 style={{ background: `${color}` }}
                 className={check.active ? styles.activeFilterColor : ""}
                 onClick={() => colorHandler(check.result)}

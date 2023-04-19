@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -56,24 +54,6 @@ export default function MultipleSelect({
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
-  /*
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
-  };
-  */
-
-  /*
-  const handleChangeMultiple = (event) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    setPersonName(value);
-  };
- */
 
   return (
     <div>

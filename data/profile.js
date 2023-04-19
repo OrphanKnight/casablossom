@@ -96,12 +96,12 @@ export const sidebarData = [
     heading: "Other Services",
     links: [
       {
-        name: "Survey Center",
-        link: "",
+        name: "Send Us Your Thoughts",
+        link: "/contact",
       },
       {
-        name: "Contact Preferences",
-        link: "",
+        name: "Contact Directly",
+        link: "mailto:blossomcasa@gmail.com",
       },
     ],
   },
@@ -110,15 +110,15 @@ export const sidebarData = [
     links: [
       {
         name: "Shipping Info",
-        link: "",
+        link: "/services/shipping",
       },
       {
         name: "Return Policy",
-        link: "",
+        link: "/services/returns",
       },
       {
-        name: "Privacy & Cookie Policy",
-        link: "",
+        name: "Customer service",
+        link: "/services/customer",
       },
     ],
   },

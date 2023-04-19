@@ -193,19 +193,19 @@ const links = [
     links: [
       {
         name: "Customer service",
-        link: "",
+        link: "/services/customer",
       },
       {
-        name: "Terms and Conditions",
-        link: "",
+        name: "Return Policy",
+        link: "/services/returns",
       },
       {
         name: "Shipping Policy",
-        link: "",
+        link: "/services/shipping",
       },
       {
         name: "Events",
-        link: "",
+        link: "/contact",
       },
     ],
   },

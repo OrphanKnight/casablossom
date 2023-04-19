@@ -38,6 +38,11 @@ describe("CartHeader", () => {
             name: "Calla Lilies",
             selected: false,
           },
+          {
+            _id: "64485566f06577d20ada",
+            name: "Drago",
+            selected: false,
+          },
         ],
       },
     });

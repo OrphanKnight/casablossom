@@ -227,28 +227,28 @@ exports[`renders Footer component 1`] = `
           </b>
           <li>
             <a
-              href=""
+              href="/services/customer"
             >
               Customer service
             </a>
           </li>
           <li>
             <a
-              href=""
+              href="/services/returns"
             >
-              Terms and Conditions
+              Return Policy
             </a>
           </li>
           <li>
             <a
-              href=""
+              href="/services/shipping"
             >
               Shipping Policy
             </a>
           </li>
           <li>
             <a
-              href=""
+              href="/contact"
             >
               Events
             </a>
