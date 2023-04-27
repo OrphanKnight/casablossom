@@ -16,12 +16,14 @@ export default function CheckOut({ cart, user }) {
   const [selectedAddress, setSelectedAddress] = useState("");
   console.log("cart", cart);
   useEffect(() => {
-    let check = addresses.find((ad) => ad.active == true);
-    if (check) {
-      setSelectedAddress(check);
-    } else {
-      setSelectedAddress("");
-    }
+    setTimeout(function () {
+      let check = addresses.find((ad) => ad.active == true);
+      if (check) {
+        setSelectedAddress(check);
+      } else {
+        setSelectedAddress("");
+      }
+    }, 1000);
   }, [addresses]);
   return (
     <>
